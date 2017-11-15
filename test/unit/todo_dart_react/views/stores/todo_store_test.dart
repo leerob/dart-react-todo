@@ -1,10 +1,10 @@
-library vending_machine_store_test;
+library todo_dart_react_test;
 
 import 'package:test/test.dart';
 import 'package:todo_dart_react/src/todo_dart_react/todo_dart_react.dart';
 
 main() {
-  group('Vending Machine Store and Actions', () {
+  group('ToDoStore', () {
     ToDoActions actions;
     ToDoStore store;
 
@@ -13,12 +13,9 @@ main() {
       store = new ToDoStore(actions);
     });
 
-    group('TODO', () {
-      test('TODO', () async {
-        // await actions.productSelected(product);
-        // expect(store.lastProductDispensed, isNull, reason: 'The last dispensed product was not null');
-        // expect(store.displayError, equals('"${product}" not found'));
-      });
+    test('addTodo', () async {
+      await actions.addTodo('Testing!');
+      expect(store.todos, contains('Testing!'));
     });
   });
 }

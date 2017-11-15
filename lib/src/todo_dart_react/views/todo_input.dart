@@ -23,14 +23,13 @@ class ToDoInputComponent extends UiComponent<ToDoInputProps> {
   }
 
   @override
-  render() { 
+  render() {
     return (Dom.input()
       ..className = 'form-control mb-1 mt-2'
       ..placeholder = 'What do you need to do?'
       ..onKeyDown = _checkForEnterPressed
       ..ref = (instance) {
         _todoInput = instance;
-      }
-    )();
+      })();
   }
 }
