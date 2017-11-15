@@ -22,16 +22,14 @@ part of todo_dart_react;
 UiFactory<ToggleButtonGroupProps> ToggleButtonGroup;
 
 @Props()
-class ToggleButtonGroupProps extends ButtonGroupProps
-    with AbstractInputPropsMixin {}
+class ToggleButtonGroupProps extends ButtonGroupProps with AbstractInputPropsMixin {}
 
 @State()
-class ToggleButtonGroupState extends ButtonGroupState
-    with AbstractInputStateMixin {}
+class ToggleButtonGroupState extends ButtonGroupState with AbstractInputStateMixin {}
 
 @Component(subtypeOf: ButtonGroupComponent)
-class ToggleButtonGroupComponent extends ButtonGroupComponent<
-    ToggleButtonGroupProps, ToggleButtonGroupState> {
+class ToggleButtonGroupComponent
+    extends ButtonGroupComponent<ToggleButtonGroupProps, ToggleButtonGroupState> {
   // Refs
 
   Map<int, dynamic> _toggleButtonRefs = <int, dynamic>{};
@@ -84,8 +82,7 @@ class ToggleButtonGroupComponent extends ButtonGroupComponent<
   /// The handler for when one of the children of the [ToggleButtonGroup] is changed or unchecked
   void _handleOnChange(react.SyntheticFormEvent event) {
     _toggleButtonRefs.values.forEach((childComponent) {
-      if (childComponent is ToggleButtonComponent)
-        childComponent._refreshState();
+      if (childComponent is ToggleButtonComponent) childComponent._refreshState();
     });
   }
 

@@ -113,8 +113,7 @@ class ListGroupItemComponent extends UiComponent<ListGroupItemProps> {
       ..target = props.target
       ..type = _isActionItem && !_isAnchorLink ? props.type.typeName : null
       ..disabled = _useDisabledAttr ? props.isDisabled : null
-      ..addProps(ariaProps()
-        ..disabled = !_useDisabledAttr ? props.isDisabled : null))(children);
+      ..addProps(ariaProps()..disabled = !_useDisabledAttr ? props.isDisabled : null))(children);
   }
 
   ReactElement renderItemHeader() {
@@ -161,12 +160,10 @@ class ListGroupItemComponent extends UiComponent<ListGroupItemProps> {
 
 /// Contextual skin options for a [ListGroupItem] component.
 class ListGroupItemSkin extends ClassNameConstant {
-  const ListGroupItemSkin._(String name, String className)
-      : super(name, className);
+  const ListGroupItemSkin._(String name, String className) : super(name, className);
 
   /// [className] value: null
-  static const ListGroupItemSkin DEFAULT =
-      const ListGroupItemSkin._('DEFAULT', null);
+  static const ListGroupItemSkin DEFAULT = const ListGroupItemSkin._('DEFAULT', null);
 
   /// [className] value: 'list-group-item-danger'
   static const ListGroupItemSkin DANGER =
@@ -181,8 +178,7 @@ class ListGroupItemSkin extends ClassNameConstant {
       const ListGroupItemSkin._('WARNING', 'list-group-item-warning');
 
   /// [className] value: 'list-group-item-info'
-  static const ListGroupItemSkin INFO =
-      const ListGroupItemSkin._('INFO', 'list-group-item-info');
+  static const ListGroupItemSkin INFO = const ListGroupItemSkin._('INFO', 'list-group-item-info');
 }
 
 /// Options for the [Element] that will be used when rendering a [ListGroupItem] component.
@@ -197,15 +193,13 @@ class ListGroupItemElementType {
   ///
   /// Only use this when the parent [ListGroup] has
   /// [ListGroupProps.elementType] set to [ListGroupElementType.UL].
-  static final ListGroupItemElementType LI =
-      new ListGroupItemElementType._internal(Dom.li);
+  static final ListGroupItemElementType LI = new ListGroupItemElementType._internal(Dom.li);
 
   /// A [Dom.span] (HTML `<span>` element)
   ///
   /// Will only be used if [ListGroupItemProps.href] and
   /// [ListGroupItemProps.onClick] are both `null`.
-  static final ListGroupItemElementType SPAN =
-      new ListGroupItemElementType._internal(Dom.span);
+  static final ListGroupItemElementType SPAN = new ListGroupItemElementType._internal(Dom.span);
 }
 
 /// Options for the [Element] that will be used when rendering a [ListGroupItemProps.header].

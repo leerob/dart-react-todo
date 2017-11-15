@@ -80,8 +80,7 @@ class ProgressState extends UiState {
 }
 
 @Component()
-class ProgressComponent
-    extends UiStatefulComponent<ProgressProps, ProgressState> {
+class ProgressComponent extends UiStatefulComponent<ProgressProps, ProgressState> {
   @override
   Map getDefaultProps() => (newProps()
     ..value = 0.0
@@ -98,8 +97,8 @@ class ProgressComponent
 
   @override
   render() {
-    return (Dom.div()..addProps(props.rootNodeProps))(
-        renderCaptionNode(), renderProgressNode(), props.children);
+    return (Dom.div()
+      ..addProps(props.rootNodeProps))(renderCaptionNode(), renderProgressNode(), props.children);
   }
 
   ReactElement renderProgressNode() {
@@ -161,18 +160,14 @@ class ProgressSkin extends ClassNameConstant {
   static const ProgressSkin DEFAULT = const ProgressSkin._('DEFAULT', '');
 
   /// [className] value: 'progress-danger'
-  static const ProgressSkin DANGER =
-      const ProgressSkin._('DANGER', 'progress-danger');
+  static const ProgressSkin DANGER = const ProgressSkin._('DANGER', 'progress-danger');
 
   /// [className] value: 'progress-success'
-  static const ProgressSkin SUCCESS =
-      const ProgressSkin._('SUCCESS', 'progress-success');
+  static const ProgressSkin SUCCESS = const ProgressSkin._('SUCCESS', 'progress-success');
 
   /// [className] value: 'progress-warning'
-  static const ProgressSkin WARNING =
-      const ProgressSkin._('WARNING', 'progress-warning');
+  static const ProgressSkin WARNING = const ProgressSkin._('WARNING', 'progress-warning');
 
   /// [className] value: 'progress-info'
-  static const ProgressSkin INFO =
-      const ProgressSkin._('INFO', 'progress-info');
+  static const ProgressSkin INFO = const ProgressSkin._('INFO', 'progress-info');
 }

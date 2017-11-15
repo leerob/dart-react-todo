@@ -62,8 +62,7 @@ class ToggleButtonState extends ButtonState with AbstractInputStateMixin {
 }
 
 @Component(subtypeOf: ButtonComponent)
-class ToggleButtonComponent
-    extends ButtonComponent<ToggleButtonProps, ToggleButtonState> {
+class ToggleButtonComponent extends ButtonComponent<ToggleButtonProps, ToggleButtonState> {
   // Refs
 
   /// A reference to the [Dom.input] rendered via [renderInput] within the [ToggleButton].
@@ -147,8 +146,7 @@ class ToggleButtonComponent
     //
     // ********************************************************
 
-    if (props.defaultChecked != null)
-      builder.defaultChecked = state.isChecked; // [1]
+    if (props.defaultChecked != null) builder.defaultChecked = state.isChecked; // [1]
     if (props.checked != null) builder.checked = state.isChecked; // [1]
     if (props.value != null) builder.value = props.value; // [2]
 
@@ -164,11 +162,8 @@ class ToggleButtonComponent
   ///
   /// In an actual implementation, you would want to add a unique class to the root of this
   /// component, and add these styles in your app / component library stylesheet.
-  Map<String, dynamic> get makeInputNodeInvisible => {
-        'position': 'absolute',
-        'clip': 'rect(0,0,0,0)',
-        'pointerEvents': 'none'
-      };
+  Map<String, dynamic> get makeInputNodeInvisible =>
+      {'position': 'absolute', 'clip': 'rect(0,0,0,0)', 'pointerEvents': 'none'};
 
   /// Checks the `<input>` element to ensure that [ToggleButtonState.isChecked]
   /// matches the value of the [InputElement.checked] attribute.
@@ -180,9 +175,8 @@ class ToggleButtonComponent
   }
 
   void _validateProps(ToggleButtonProps props) {
-    assert(
-        (props.toggleType == ToggleBehaviorType.RADIO && props.name != null) ||
-            props.toggleType == ToggleBehaviorType.CHECKBOX);
+    assert((props.toggleType == ToggleBehaviorType.RADIO && props.name != null) ||
+        props.toggleType == ToggleBehaviorType.CHECKBOX);
   }
 
   /// Used to check if the `input` element is controlled or not.

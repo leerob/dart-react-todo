@@ -1,5 +1,11 @@
 name: todo_dart_react
+version: 0.0.1
 description: Dart + React ToDo List Example
+homepage: https://github.com/leerob/dart-create-react-app
+author: Lee Robinson <lee.robinson@workiva.com>
+
+environment:
+  sdk: '>=1.23.0 <2.0.0'
 
 dependencies:
   w_flux: ^2.9.4

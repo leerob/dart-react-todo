@@ -1,5 +1,3 @@
-library index_example;
-
 import 'dart:html';
 
 import 'package:react/react_dom.dart' as react_dom;
@@ -15,10 +13,8 @@ void main() {
 
   var todoList = (ToDoList()
     ..actions = actions
-    ..store = store
-  )();
+    ..store = store)();
 
-  Element container = querySelector('#app-container');
+  final container = querySelector('#app-container');
   react_dom.render(todoList, container);
 }
-

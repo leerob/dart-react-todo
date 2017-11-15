@@ -8,11 +8,17 @@ class ToDoListProps extends FluxUiProps<ToDoActions, ToDoStore> {}
 
 @Component()
 class ToDoListComponent extends FluxUiComponent<ToDoListProps> {
+  @override
+  Map getDefaultProps() => (newProps());
+
+  /// Create a new [ListGroupItem] for each todo.
   List _renderListItems() {
     List items = [];
 
     for (String todo in props.store._todos) {
-      items.add((ListGroupItem()..key = todo)(todo));
+      items.add(
+        (ListGroupItem()..key = todo)(todo),
+      );
     }
 
     return items;
@@ -21,10 +27,10 @@ class ToDoListComponent extends FluxUiComponent<ToDoListProps> {
   @override
   render() {
     return Dom.div()(
-      (ToDoInput()
-        ..addTodo = props.actions.addTodo
-      )(),
-      ListGroup()(_renderListItems())
+      (ToDoInput()..addTodo = props.actions.addTodo)(),
+      ListGroup()(
+        _renderListItems(),
+      ),
     );
   }
 }

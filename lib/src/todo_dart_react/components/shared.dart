@@ -29,12 +29,10 @@ class ToggleBehaviorType extends DebugFriendlyConstant {
   const ToggleBehaviorType._(String name, this.typeName) : super(name);
 
   /// [typeName] value: 'radio'
-  static const ToggleBehaviorType RADIO =
-      const ToggleBehaviorType._('RADIO', 'radio');
+  static const ToggleBehaviorType RADIO = const ToggleBehaviorType._('RADIO', 'radio');
 
   /// [typeName] value: 'checkbox'
-  static const ToggleBehaviorType CHECKBOX =
-      const ToggleBehaviorType._('CHECKBOX', 'checkbox');
+  static const ToggleBehaviorType CHECKBOX = const ToggleBehaviorType._('CHECKBOX', 'checkbox');
 
   @override
   String get debugDescription => 'typeName: $typeName';

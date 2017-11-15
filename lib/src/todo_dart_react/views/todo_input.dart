@@ -5,6 +5,7 @@ UiFactory<ToDoInputProps> ToDoInput;
 
 @Props()
 class ToDoInputProps extends UiProps {
+  /// Callback for when a new todo item is added to the list.
   Function addTodo;
 }
 
@@ -15,7 +16,11 @@ class ToDoInputComponent extends UiComponent<ToDoInputProps> {
 
   InputElement _todoInput;
 
-  _checkForEnterPressed(SyntheticKeyboardEvent e) {
+  /// Check the keyCode to determine if enter was pressed.
+  /// 
+  /// If enter was pressed, add a new todo item with the current
+  /// value and reset the input.
+  void _checkForEnterPressed(e) {
     if (e.keyCode == 13) {
       props.addTodo(_todoInput.value);
       _todoInput.value = '';

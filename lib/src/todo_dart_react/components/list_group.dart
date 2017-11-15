@@ -38,10 +38,8 @@ class ListGroupElementType {
   ListGroupElementType._internal(this.componentBuilderFactory);
 
   /// A [Dom.ul] (HTML `<ul>` element)
-  static final ListGroupElementType UL =
-      new ListGroupElementType._internal(Dom.ul);
+  static final ListGroupElementType UL = new ListGroupElementType._internal(Dom.ul);
 
   /// A [Dom.div] (HTML `<div>` element)
-  static final ListGroupElementType DIV =
-      new ListGroupElementType._internal(Dom.div);
+  static final ListGroupElementType DIV = new ListGroupElementType._internal(Dom.div);
 }

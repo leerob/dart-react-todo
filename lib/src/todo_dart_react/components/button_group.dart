@@ -30,8 +30,8 @@ class ButtonGroupProps extends UiProps {
 class ButtonGroupState extends UiState {}
 
 @Component()
-class ButtonGroupComponent<T extends ButtonGroupProps,
-    S extends ButtonGroupState> extends UiStatefulComponent<T, S> {
+class ButtonGroupComponent<T extends ButtonGroupProps, S extends ButtonGroupState>
+    extends UiStatefulComponent<T, S> {
   @override
   Map getDefaultProps() => (newProps()
     ..size = ButtonGroupSize.DEFAULT
@@ -98,14 +98,13 @@ class ButtonGroupComponent<T extends ButtonGroupProps,
     var isCloneable = false;
     if (isValidElement(child)) {
       if (!isComponentOfType(child, childFactory)) {
-        assert(ValidationUtil.warn(
-            'An unexpected child type was found within this component.', this));
+        assert(
+            ValidationUtil.warn('An unexpected child type was found within this component.', this));
       }
 
       isCloneable = true;
     } else if (child != null) {
-      assert(
-          ValidationUtil.warn('You are not using a valid ReactElement.', this));
+      assert(ValidationUtil.warn('You are not using a valid ReactElement.', this));
     }
 
     return isCloneable;
@@ -119,19 +118,16 @@ class ButtonGroupComponent<T extends ButtonGroupProps,
 
 /// Size options for a [ButtonGroup]s, with corresponding [className] values.
 class ButtonGroupSize extends ClassNameConstant {
-  const ButtonGroupSize._(String name, String className)
-      : super(name, className);
+  const ButtonGroupSize._(String name, String className) : super(name, className);
 
   /// [className] value: 'btn-group-sm'
-  static const ButtonGroupSize SMALL =
-      const ButtonGroupSize._('SMALL', 'btn-group-sm');
+  static const ButtonGroupSize SMALL = const ButtonGroupSize._('SMALL', 'btn-group-sm');
 
   /// [className] value: ''
   static const ButtonGroupSize DEFAULT = const ButtonGroupSize._('DEFAULT', '');
 
   /// [className] value: 'btn-group-lg'
-  static const ButtonGroupSize LARGE =
-      const ButtonGroupSize._('LARGE', 'btn-group-lg');
+  static const ButtonGroupSize LARGE = const ButtonGroupSize._('LARGE', 'btn-group-lg');
 }
 
 /// Mapping from [ButtonSize] values to their analogous [ButtonGroupSize] values.

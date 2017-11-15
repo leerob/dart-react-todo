@@ -101,8 +101,7 @@ class ButtonComponent<T extends ButtonProps, S extends ButtonState>
       ..target = props.target
       ..type = _type
       ..disabled = _isAnchorLink ? null : props.isDisabled
-      ..addProps(ariaProps()
-        ..disabled = _isAnchorLink ? props.isDisabled : null))(children);
+      ..addProps(ariaProps()..disabled = _isAnchorLink ? props.isDisabled : null))(children);
   }
 
   ClassNameBuilder getButtonClasses() {
@@ -115,8 +114,7 @@ class ButtonComponent<T extends ButtonProps, S extends ButtonState>
       ..add(props.size.className);
   }
 
-  BuilderOnlyUiFactory<DomProps> get _buttonDomNodeFactory =>
-      _isAnchorLink ? Dom.a : Dom.button;
+  BuilderOnlyUiFactory<DomProps> get _buttonDomNodeFactory => _isAnchorLink ? Dom.a : Dom.button;
 
   bool get _isAnchorLink => props.href != null;
 
@@ -130,23 +128,19 @@ class ButtonSkin extends ClassNameConstant {
   const ButtonSkin._(String name, String className) : super(name, className);
 
   /// [className] value: 'btn-primary'
-  static const ButtonSkin PRIMARY =
-      const ButtonSkin._('PRIMARY', 'btn-primary');
+  static const ButtonSkin PRIMARY = const ButtonSkin._('PRIMARY', 'btn-primary');
 
   /// [className] value: 'btn-secondary'
-  static const ButtonSkin SECONDARY =
-      const ButtonSkin._('SECONDARY', 'btn-secondary');
+  static const ButtonSkin SECONDARY = const ButtonSkin._('SECONDARY', 'btn-secondary');
 
   /// [className] value: 'btn-danger'
   static const ButtonSkin DANGER = const ButtonSkin._('DANGER', 'btn-danger');
 
   /// [className] value: 'btn-success'
-  static const ButtonSkin SUCCESS =
-      const ButtonSkin._('SUCCESS', 'btn-success');
+  static const ButtonSkin SUCCESS = const ButtonSkin._('SUCCESS', 'btn-success');
 
   /// [className] value: 'btn-warning'
-  static const ButtonSkin WARNING =
-      const ButtonSkin._('WARNING', 'btn-warning');
+  static const ButtonSkin WARNING = const ButtonSkin._('WARNING', 'btn-warning');
 
   /// [className] value: 'btn-info'
   static const ButtonSkin INFO = const ButtonSkin._('INFO', 'btn-info');
@@ -175,8 +169,7 @@ class ButtonSkin extends ClassNameConstant {
       const ButtonSkin._('WARNING_OUTLINE', 'btn-outline-warning');
 
   /// [className] value: 'btn-outline-info'
-  static const ButtonSkin INFO_OUTLINE =
-      const ButtonSkin._('INFO_OUTLINE', 'btn-outline-info');
+  static const ButtonSkin INFO_OUTLINE = const ButtonSkin._('INFO_OUTLINE', 'btn-outline-info');
 }
 
 /// Size options for a [Button] component.
