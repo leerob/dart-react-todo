@@ -28,7 +28,7 @@ class ToDoListComponent extends FluxUiComponent<ToDoListProps> {
   render() {
     return Dom.div()(
       (ToDoInput()..addTodo = props.actions.addTodo)(),
-      ListGroup()(
+      (ListGroup()..addTestId('todoListGroup'))(
         _renderListItems(),
       ),
     );

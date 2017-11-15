@@ -1,7 +1,7 @@
 library todo_dart_react_test.stores;
 
 import 'package:test/test.dart';
-import 'package:todo_dart_react/src/todo_dart_react/todo_dart_react.dart';
+import 'package:todo_dart_react/src/todo_dart_react/components.dart';
 
 main() {
   group('ToDoStore', () {

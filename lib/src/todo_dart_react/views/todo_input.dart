@@ -17,7 +17,7 @@ class ToDoInputComponent extends UiComponent<ToDoInputProps> {
   InputElement _todoInput;
 
   /// Check the keyCode to determine if enter was pressed.
-  /// 
+  ///
   /// If enter was pressed, add a new todo item with the current
   /// value and reset the input.
   void _checkForEnterPressed(e) {

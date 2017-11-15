@@ -1,19 +1,28 @@
 library todo_dart_react_test;
 
-import 'dart:html';
-
-import 'package:react/react.dart' as react;
-import 'package:over_react/over_react.dart';
 import 'package:over_react_test/over_react_test.dart';
 import 'package:test/test.dart';
 
-import 'package:todo_dart_react/src/todo_dart_react/todo_dart_react.dart';
+import 'package:todo_dart_react/src/todo_dart_react/components.dart';
 
 main() {
-  group('ToDo', () {
+  var renderedInstance;
+  ToDoActions actions;
+  ToDoStore store;
+
+  group('ToDoList', () {
     setUp(() {
-      ReactElement element = ToDoList()();
-      react.Component component = renderAndGetComponent(element);
+      actions = new ToDoActions();
+      store = new ToDoStore(actions);
+    });
+
+    test('renders correctly', () {
+      renderedInstance = render((ToDoList()
+        ..actions = actions
+        ..store = store)());
+
+      var listGroup = getComponentRootDomByTestId(renderedInstance, 'todoListGroup');
+      expect(listGroup.text, contains('Learn Dart'));
     });
   });
 }
