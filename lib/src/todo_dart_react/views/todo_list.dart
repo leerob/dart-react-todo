@@ -11,13 +11,13 @@ class ToDoListComponent extends FluxUiComponent<ToDoListProps> {
   @override
   Map getDefaultProps() => (newProps());
 
-  /// Create a new [ListGroupItem] for each todo.
+  /// Create a new [ToDoListItem] for each todo.
   List _renderListItems() {
     List items = [];
 
-    for (String todo in props.store._todos) {
+    for (String todo in props.store.todos) {
       items.add(
-        (ListGroupItem()..key = todo)(todo),
+        (ToDoListItem()..key = todo)(todo),
       );
     }
 

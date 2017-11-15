@@ -30,7 +30,7 @@ class ToDoInputComponent extends UiComponent<ToDoInputProps> {
   @override
   render() {
     return (Dom.input()
-      ..className = 'form-control mb-1 mt-2'
+      ..className = 'form-control mb-3 mt-5'
       ..placeholder = 'What do you need to do?'
       ..onKeyDown = _checkForEnterPressed
       ..ref = (instance) {

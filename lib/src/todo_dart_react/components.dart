@@ -10,6 +10,7 @@ import 'package:w_flux/w_flux.dart';
 part 'actions.dart';
 part 'views/todo_input.dart';
 part 'views/todo_list.dart';
+part 'views/todo_list_item.dart';
 part 'stores/todo_store.dart';
 
 part 'components/shared.dart';
