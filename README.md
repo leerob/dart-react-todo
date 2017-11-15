@@ -1,6 +1,6 @@
 # Dart Create React App
 
-Easily set up a Dart + React app with the batteries included!
+Create Dart + React apps with the batteries included! Based loosely off of Facebook's [create-react-app](https://github.com/facebookincubator/create-react-app).
 
 ### Quickstart
 
@@ -25,7 +25,6 @@ Dart has a prescribed directory structure in order to ensure that its tools work
 
 ```
 your_app/
-├── example/
 ├── lib/
 │   └── src/
 ├── test/
@@ -35,10 +34,15 @@ your_app/
 └── pubspec.yaml
 ```
 
-### React
+### [React](https://github.com/cleandart/react-dart)
+Bindings for React to Dart.
 
-### over_react
+### [over_react](https://github.com/Workiva/over_react)
+A library for building statically-typed React UI components using Dart.
+### [w_flux](https://github.com/Workiva/w_flux)
+A Dart app architecture library with uni-directional data flow inspired by RefluxJS and Facebook's Flux.
 
-### w_flux
+### [dart_dev](https://github.com/Workiva/dart_dev)
+Centralized tooling for Dart projects. Consistent interface across projects. Easily configurable.
 
-### dart_dev
+Check out some of Workiva's other Dart open source software [here](https://workiva.github.io/).
