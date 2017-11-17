@@ -7,21 +7,21 @@ import 'package:todo_dart_react/src/todo_dart_react/components.dart';
 
 main() {
   var renderedInstance;
-  ToDoActions actions;
-  ToDoStore store;
+  TodoActions actions;
+  TodoStore store;
 
-  group('ToDoList', () {
+  group('TodoApp', () {
     setUp(() {
-      actions = new ToDoActions();
-      store = new ToDoStore(actions);
+      actions = new TodoActions();
+      store = new TodoStore(actions);
     });
 
     test('renders correctly', () {
-      renderedInstance = render((ToDoList()
+      renderedInstance = render((TodoApp()
         ..actions = actions
         ..store = store)());
 
-      var listGroup = getComponentRootDomByTestId(renderedInstance, 'todoListGroup');
+      var listGroup = getComponentRootDomByTestId(renderedInstance, 'TodoListGroup');
       expect(listGroup.text, contains('Learn Dart'));
     });
   });

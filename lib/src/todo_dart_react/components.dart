@@ -8,6 +8,8 @@ import 'package:over_react/over_react.dart';
 import 'package:w_flux/w_flux.dart';
 
 part 'actions.dart';
+part 'model/todo.dart';
+part 'views/todo_app.dart';
 part 'views/todo_input.dart';
 part 'views/todo_list.dart';
 part 'views/todo_list_item.dart';

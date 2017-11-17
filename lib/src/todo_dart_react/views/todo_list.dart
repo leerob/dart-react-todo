@@ -1,23 +1,30 @@
 part of todo_dart_react;
 
+typedef AddTodoCallback(Todo todo);
+typedef DeleteTodoCallback(Todo todo);
+
 @Factory()
-UiFactory<ToDoListProps> ToDoList;
+UiFactory<TodoListProps> TodoList;
 
 @Props()
-class ToDoListProps extends FluxUiProps<ToDoActions, ToDoStore> {}
+class TodoListProps extends UiProps {
+  List<Todo> todos;
+  AddTodoCallback addTodo;
+  DeleteTodoCallback deleteTodo;
+}
 
 @Component()
-class ToDoListComponent extends FluxUiComponent<ToDoListProps> {
-  @override
-  Map getDefaultProps() => (newProps());
-
-  /// Create a new [ToDoListItem] for each todo.
+class TodoListComponent extends UiComponent<TodoListProps> {
+  /// Create a new [TodoListItem] for each todo.
   List _renderListItems() {
     List items = [];
 
-    for (String todo in props.store.todos) {
+    for (Todo todo in props.todos) {
       items.add(
-        (ToDoListItem()..key = todo)(todo),
+        (TodoListItem()
+          ..key = todo.content
+          ..todo = todo
+          ..deleteTodo = props.deleteTodo)(),
       );
     }
 
@@ -27,8 +34,8 @@ class ToDoListComponent extends FluxUiComponent<ToDoListProps> {
   @override
   render() {
     return Dom.div()(
-      (ToDoInput()..addTodo = props.actions.addTodo)(),
-      (ListGroup()..addTestId('todoListGroup'))(
+      (TodoInput()..addTodo = props.addTodo)(),
+      (ListGroup()..addTestId('TodoListGroup'))(
         _renderListItems(),
       ),
     );

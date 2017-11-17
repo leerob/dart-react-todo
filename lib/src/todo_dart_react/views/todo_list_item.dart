@@ -1,26 +1,29 @@
 part of todo_dart_react;
 
 @Factory()
-UiFactory<ToDoListItemProps> ToDoListItem;
+UiFactory<TodoListItemProps> TodoListItem;
 
 @Props()
-class ToDoListItemProps extends UiProps {}
+class TodoListItemProps extends UiProps {
+  Todo todo;
+  DeleteTodoCallback deleteTodo;
+}
 
 @Component()
-class ToDoListItemComponent extends UiComponent<ToDoListItemProps> {
-  @override
-  Map getDefaultProps() => (newProps());
-
+class TodoListItemComponent extends UiComponent<TodoListItemProps> {
   @override
   render() {
     return ListGroupItem()(
       (Dom.input()
         ..className = 'mr-3'
         ..type = 'checkbox')(),
-      Dom.span()(props.children),
+      Dom.span()(
+        props.todo.content,
+      ),
       (Button()
         ..className = 'float-right'
-        ..skin = ButtonSkin.DANGER)(
+        ..skin = ButtonSkin.DANGER
+        ..onClick = ((_) => props.deleteTodo(props.todo)))(
         'Delete',
       ),
     );

@@ -8,13 +8,13 @@ import 'package:todo_dart_react/todo_dart_react.dart';
 void main() {
   react_client.setClientConfiguration();
 
-  ToDoActions actions = new ToDoActions();
-  ToDoStore store = new ToDoStore(actions);
+  TodoActions actions = new TodoActions();
+  TodoStore store = new TodoStore(actions);
 
-  var todoList = (ToDoList()
+  var TodoList = (TodoApp()
     ..actions = actions
     ..store = store)();
 
   final container = querySelector('#app-container');
-  react_dom.render(todoList, container);
+  react_dom.render(TodoList, container);
 }

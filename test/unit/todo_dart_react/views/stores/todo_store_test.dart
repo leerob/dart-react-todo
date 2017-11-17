@@ -4,18 +4,19 @@ import 'package:test/test.dart';
 import 'package:todo_dart_react/src/todo_dart_react/components.dart';
 
 main() {
-  group('ToDoStore', () {
-    ToDoActions actions;
-    ToDoStore store;
+  group('TodoStore', () {
+    TodoActions actions;
+    TodoStore store;
 
     setUp(() {
-      actions = new ToDoActions();
-      store = new ToDoStore(actions);
+      actions = new TodoActions();
+      store = new TodoStore(actions);
     });
 
     test('addTodo', () async {
-      await actions.addTodo('Testing!');
-      expect(store.todos, contains('Testing!'));
+      Todo todo = new Todo('Testing!');
+      await actions.addTodo(todo);
+      expect(store.todos, contains(todo));
     });
   });
 }

@@ -1,19 +1,16 @@
 part of todo_dart_react;
 
 @Factory()
-UiFactory<ToDoInputProps> ToDoInput;
+UiFactory<TodoInputProps> TodoInput;
 
 @Props()
-class ToDoInputProps extends UiProps {
-  /// Callback for when a new todo item is added to the list.
-  Function addTodo;
+class TodoInputProps extends UiProps {
+  /// When a new todo item is added to the list.
+  AddTodoCallback addTodo;
 }
 
 @Component()
-class ToDoInputComponent extends UiComponent<ToDoInputProps> {
-  @override
-  Map getDefaultProps() => (newProps());
-
+class TodoInputComponent extends UiComponent<TodoInputProps> {
   InputElement _todoInput;
 
   /// Check the keyCode to determine if enter was pressed.
@@ -22,7 +19,7 @@ class ToDoInputComponent extends UiComponent<ToDoInputProps> {
   /// value and reset the input.
   void _checkForEnterPressed(e) {
     if (e.keyCode == 13) {
-      props.addTodo(_todoInput.value);
+      props.addTodo(new Todo(_todoInput.value));
       _todoInput.value = '';
     }
   }

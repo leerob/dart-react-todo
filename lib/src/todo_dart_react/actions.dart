@@ -1,5 +1,6 @@
 part of todo_dart_react;
 
-class ToDoActions {
-  final Action<String> addTodo = new Action<String>();
+class TodoActions {
+  final Action<Todo> addTodo = new Action<Todo>();
+  final Action<Todo> deleteTodo = new Action<Todo>();
 }
