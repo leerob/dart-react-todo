@@ -2,9 +2,10 @@ library todo_dart_react;
 
 import 'dart:html';
 import 'dart:math';
+
+import 'package:over_react/over_react.dart';
 import 'package:react/react.dart' as react;
 import 'package:react/react_client.dart';
-import 'package:over_react/over_react.dart';
 import 'package:w_flux/w_flux.dart';
 
 part 'actions.dart';
