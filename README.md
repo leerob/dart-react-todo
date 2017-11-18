@@ -5,7 +5,7 @@
   <br>
 </h1>
 
-
+[![Build Status](https://travis-ci.org/leerob/dart-react-todo.svg?branch=master)](https://travis-ci.org/leerob/dart-react-todo)
 ### Overview
 
 There are a million different ways to build a web app in today's landscape. Different lanuagues and frameworks come and go and vary in popularity. There isn't one right way to do things and ultimately it's about weighing the pros and cons of the available tools at your disposable. The goal of this article is to inform you about another option you may have not previously considered: using React with Dart.
