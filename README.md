@@ -10,7 +10,7 @@
 
 ### Overview
 
-There are a million different ways to build a web app in today's landscape. Different lanuagues and frameworks come and go and vary in popularity. There isn't one right way to do things and ultimately it's about weighing the pros and cons of the available tools at your disposable. The goal of this article is to inform you about another option you may have not previously considered: using React with Dart.
+There are a million different ways to build a web app in today's landscape. Different languages and frameworks come and go and vary in popularity. There isn't one right way to do things and ultimately it's about weighing the pros and cons of the available tools at your disposable. The goal of this article is to inform you about another option you may have not previously considered: using React with Dart.
 
 ### Table of Contents
 
@@ -146,7 +146,7 @@ your_app/
 
 ##### [dart_dev](https://github.com/Workiva/dart_dev)
 
-dart_dev is our centralized tooling built on-top of the Dart SDK. All Dart projects eventually share a common set of development requirements:
+dart_dev is our centralized tooling built on top of the Dart SDK. All Dart projects eventually share a common set of development requirements:
 
 - Tests (unit, integration, and functional)
 - Code coverage
@@ -154,7 +154,7 @@ dart_dev is our centralized tooling built on-top of the Dart SDK. All Dart proje
 - Static analysis to detect issues
 - Documentation generation
 
-The Dart SDK provides the necessary tooling to accomplish the tasks mentioned above, but lacks a consistent usage pattern across multiple projects. Using dart_dev, a single configuration file will get our project configured and ready to use a variety of command line arguments. 
+The Dart SDK provides the necessary tooling to accomplish the tasks mentioned above but lacks a consistent usage pattern across multiple projects. Using dart_dev, a single configuration file will get our project configured and ready to use a variety of command line arguments. 
 
 For example: let's analyze and format our entire code base.
 
@@ -423,7 +423,7 @@ When our `TodoStore` is constructed, it populates our todo list with some pre-de
 
 To summarize so far, we have:
 
-- Initilized an entry point into the application
+- Initialized an entry point into the application
 - Defined actions for the todo list
 - Created a data model for a Todo item
 - Set up a store to contain the application's data
@@ -491,7 +491,7 @@ $ ddev test -n "TodoStore"
 
 When you're ready to compile your code to JS, `build` is used. This command uses
 `dart2js` to compile Dart to a single JS bundle. `dart2js` will automatically
-utilize tree-shaking to remove any dead code or unused libraries. By default the
+remove any dead code or unused libraries. By default the
 compiled code is output to the `build/` directory.
 
 ```bash
