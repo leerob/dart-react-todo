@@ -7,6 +7,7 @@ main(List<String> args) async {
 
   var directories = ['lib/', 'tool/', 'web/'];
   config.analyze.entryPoints = directories;
+  config.coverage.reportOn = ['lib/'];
   config.format
     ..paths = directories
     ..lineLength = 100;

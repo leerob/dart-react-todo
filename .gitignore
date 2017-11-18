@@ -4,3 +4,5 @@ packages
 build/
 .idea/
 .vscode/
+/coverage/
+/test/unit/generated_runner_test.html.temp.html
