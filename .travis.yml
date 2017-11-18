@@ -1,42 +1,21 @@
 language: dart
-sudo: required
-
+dist: precise
 dart:
   - 1.24.2
 
-addons:
-  apt:
-    packages:
-    - ttf-kochi-mincho
-    - ttf-kochi-gothic
-    - ttf-dejavu
-    - ttf-indic-fonts
-    - fonts-tlwg-garuda
-
+with_content_shell: true
 before_install:
-  - sudo rm -vf /etc/apt/sources.list.d/*riak*
-  - sudo apt-get update -yq
-  - sudo sh -c "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
-  - sudo apt-get install msttcorefonts -qq
-
-  - mkdir -p bin
-  - export PATH="$PATH:`pwd`/bin/"
-  - ln -s `which chromium-browser` bin/google-chrome
-
-  - wget "http://gsdview.appspot.com/dart-archive/channels/stable/release/latest/dartium/content_shell-linux-x64-release.zip"
-  - unzip content_shell-linux-x64-release.zip
-  - ln -s `pwd`/`echo drt-linux-*`/content_shell bin/content_shell
-
-  -  export DISPLAY=:99.0
-  -  ./tool/setup_dartium.sh
-  -  export PATH=$PATH":$PWD"
-  -  sh -e /etc/init.d/xvfb start
+  - export DISPLAY=:99.0
+  - ./tool/setup_dartium.sh
+  - export PATH=$PATH":$PWD"
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
 
 script:
   - pub run dart_dev format --check
   - pub run dart_dev analyze
   - pub serve --port=59925 test &
-  - sleep 5s
+  - sleep 3s
   - pub run test --concurrency=4 -p content-shell --reporter=expanded --pub-serve=59925 test/unit/generated_runner_test.dart
   - pub run dart_dev coverage --no-html
   - bash <(curl -s https://codecov.io/bash) -f coverage/coverage.lcov
