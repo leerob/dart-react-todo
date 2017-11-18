@@ -34,8 +34,10 @@ class TodoListComponent extends UiComponent<TodoListProps> {
   @override
   render() {
     return Dom.div()(
-      (TodoInput()..addTodo = props.addTodo)(),
-      (ListGroup()..addTestId('TodoListGroup'))(
+      (TodoInput()
+        ..addTestId('todoInput')
+        ..addTodo = props.addTodo)(),
+      (ListGroup()..addTestId('todoListGroup'))(
         _renderListItems(),
       ),
     );
