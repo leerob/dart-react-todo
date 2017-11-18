@@ -280,7 +280,7 @@ This library was inspired by [RefluxJS](https://github.com/reflux/refluxjs) and 
 
 As previously mentioned, we'll use the `pubspec.yaml` file in our root directory to define the dependencies for our project. Let's take a look at the `pubspec.yaml` for the todo list.
 
-```javascript
+```yaml
 name: 'todo_dart_react'
 version: 1.0.0
 description: 'Dart + React Todo List Example'
