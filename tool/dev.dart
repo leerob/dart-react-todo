@@ -9,8 +9,12 @@ main(List<String> args) async {
   config.analyze.entryPoints = directories;
 
   config.coverage
-    ..reportOn = ['lib/']
-    ..pubServe = true;
+    ..pubServe = true
+    ..reportOn = [
+      'lib/src/todo_dart_react/model/',
+      'lib/src/todo_dart_react/stores/',
+      'lib/src/todo_dart_react/views/'
+    ];
 
   config.format
     ..paths = directories
