@@ -44,3 +44,4 @@ script:
   - pub serve --port=59925 test &
   - sleep 5s
   - pub run test --concurrency=4 -p content-shell --reporter=expanded --pub-serve=59925 test/unit/generated_runner_test.dart
+  - bash <(curl -s https://codecov.io/bash) -f coverage/coverage.lcov
