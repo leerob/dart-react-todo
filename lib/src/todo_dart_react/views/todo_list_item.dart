@@ -21,6 +21,7 @@ class TodoListItemComponent extends UiComponent<TodoListItemProps> {
         props.todo.content,
       ),
       (Button()
+        ..addTestId('deleteTodo')
         ..className = 'float-right'
         ..skin = ButtonSkin.DANGER
         ..onClick = ((_) => props.deleteTodo(props.todo)))(

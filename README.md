@@ -267,7 +267,7 @@ OverReact is our library for building statically-typed React UI components. The 
   }
   ```
 
-As you can see, OverReact helps bridge the gap between Dart and React. Now, let's talk about our front-end architecture.
+As you can see, OverReact helps bridge the gap between Dart and React. If you're using VS Code, my colleague Jace has created some [OverReact code snippets](https://github.com/JaceHensley/vscode-over-react-snippets) that will help speed up your development. Now, let's talk about our front-end architecture.
 
 ##### [w_flux](https://github.com/Workiva/w_flux)
 
@@ -298,6 +298,7 @@ dependencies:
   react: ^3.6.0
 
 dev_dependencies:
+  coverage: ^0.8.0
   test: ^0.12.28
   over_react_test: ^1.3.1
   dart_dev: ^1.8.1

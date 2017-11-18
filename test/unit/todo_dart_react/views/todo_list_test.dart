@@ -27,7 +27,7 @@ main() {
       var listGroup = getComponentRootDomByTestId(renderedInstance, 'todoListGroup');
       expect(listGroup.children.length, 4);
 
-      TodoInputComponent todoInput = getComponentByTestId(renderedInstance, 'todoInput');
+      TodoInputComponent todoInput = getComponentByTestId(renderedInstance, 'todoInputComponent');
       expect(todoInput.props.addTodo, isNotNull);
     });
   });
