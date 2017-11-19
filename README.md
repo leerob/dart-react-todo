@@ -23,6 +23,7 @@ There are a million different ways to build a web app in today's landscape. Diff
 - [Dart Development Environment](#dart-development-environment)
 - [Building the Application](#building-the-application)
 - [Testing](#testing)
+- [Continuous Integration](#continuous-integration)
 - [Deploying](#deploying)
 - [Additional Resources](#additional-resources)
 
@@ -182,22 +183,7 @@ Now that we have an understanding of the language/tools we're working with, let'
 
 ##### [over_react](https://workiva.github.io/over_react/)
 
-OverReact is our library for building statically-typed React UI components. The example below shows a render method for JS, JSX, react-dart, and over_react that will have the exact same HTML markup result.
-
-
-* __React JS__:
-
-  ```es6
-  render() {
-    return React.createElement('div', {className: 'container'},
-      React.createElement('h1', null, 'Click the button!'),
-      React.createElement('button', {
-        id: 'main_button',
-        onClick: _handleClick
-      }, 'Click me')
-    );
-  }
-  ```
+OverReact is our library for building statically-typed React UI components. The example below compares a render method for JSX and over_react that will have the exact same HTML markup result.
 
 * __React JS__ (JSX):
 
@@ -210,20 +196,6 @@ OverReact is our library for building statically-typed React UI components. The 
         onClick={_handleClick}
       >Click me</button>
     </div>;
-  }
-  ```
-
-* __Vanilla react-dart__:
-
-  ```dart
-  render() {
-    return react.div({'className': 'container'},
-      react.h1({}, 'Click the button!'),
-      react.button({
-        'id': 'main_button',
-        'onClick': _handleClick
-      }, 'Click me')
-    );
   }
   ```
 
@@ -489,6 +461,11 @@ You can also run specific test files using the -n flag.
 $ ddev test -n "TodoStore"
 ```
 
+### Continuous Integration
+
+Continuous Integration (CI) is the process of automating the building and testing of your code every time you commit changes to GitHub. We can utilize [Travis CI](https://travis-ci.org/) to easily perform static analysis, check formatting, run unit tests, and generate code coverage using a `.travis.yml` file. You don't need to worry about configuring this file - it's already all set up and running in this repository. If you fork this repo to create your own application, you will need to sync Travis CI and [codecov](https://codecov.io/) with your GitHub account to trigger builds when you commit changes and generate coverage.
+
+
 ### Deploying
 
 When you're ready to compile your code to JS, we can use `pub build`. This command uses
@@ -512,7 +489,7 @@ $ pub build --mode debug
 
 ##### Netlify
 
-[Netlify](https://www.netlify.com) makes it extremely easy to deploy our compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo appliation from the command line.
+[Netlify](https://www.netlify.com) makes it extremely easy to deploy your compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo appliation from the command line. **Note**: This will create a `.netlify` file which you might want to commit for your application.
 
 
 ```bash
@@ -529,7 +506,7 @@ Deploy is live (permalink):
 Last build is always accessible on http://goofy-colden-2480f1.netlify.com
 ```
 
-That's it! We can modify the settings for our site to change the site name. You can view the deployed todo app at https://dart-react-todo.netlify.com/. **Note**: This will create a `.netlify` file which you might want to commit for your application.
+That's it! We can modify the settings for our site to change the site name. You can view the deployed todo app at https://dart-react-todo.netlify.com/.
 
 ### Additional Resources
 
