@@ -56,7 +56,7 @@ Google uses Dart for [AdWords](https://news.dartlang.org/2016/03/the-new-adwords
 As I mentioned at the start of this document, it's important to thoroughly evaluate all of the different framework options before choosing what's right for your team or company. I won't go too in-depth here on React vs. Angular since there are a [variety of articles](https://www.google.com/search?q=react+vs+angular) that dive into specifics, but I will note a couple wins for React:
 
 - Uni-directional data flow
-- Virtual DOM
+- Declarative nature of rendering views
 - XML-like syntax called JSX
 
 ### Requirements
@@ -184,7 +184,7 @@ Now that we have an understanding of the language/tools we're working with, let'
 
 #### [OverReact](https://workiva.github.io/over_react/)
 
-OverReact is our library for building statically-typed React UI components. Since OverReact is built atop React JS, I strongly encourage you to gain familiarity with it first by reading this [React JS tutorial](https://reactjs.org/docs/hello-world.html). The example below compares a render function for JSX and OverReact that will have the exact same HTML markup result.
+OverReact is our library for building statically-typed React UI components. Since OverReact is built atop React JS, I strongly encourage you to gain familiarity with React first by reading [this tutorial](https://reactjs.org/docs/hello-world.html). The example below compares a render function for JSX and OverReact that will have the exact same HTML markup result.
 
 * __React JS__ (JSX):
 
@@ -241,7 +241,7 @@ render() {
 }
 ```
 
-As you can see, OverReact helps bridge the gap between Dart and React. If you're using VS Code, my colleague Jace has created some [OverReact code snippets](https://github.com/JaceHensley/vscode-over-react-snippets) that will help speed up your development. Now, let's talk about our front-end architecture.
+OverReact helps bridge the gap between Dart and React. If you're using VS Code, my colleague Jace has created some [OverReact code snippets](https://github.com/JaceHensley/vscode-over-react-snippets) that will help speed up your development. Now, let's talk about our front-end architecture.
 
 #### [w_flux](https://github.com/Workiva/w_flux)
 
@@ -471,7 +471,7 @@ render() {
       ..addTestId('deleteTodo')
       ..className = 'float-right'
       ..skin = ButtonSkin.DANGER
-      ..onClick = ((_) => props.deleteTodo(props.todo)))(
+      ..onClick = ((event) => props.deleteTodo(props.todo)))(
       'Delete',
     ),
   );
@@ -579,6 +579,7 @@ The todo list isn't fully completed per our requirements. To fully finish the ap
 
 ### Additional Resources
 
+- [Getting the most out of React in Dart](https://www.youtube.com/watch?v=ekBD-_jRjds)
 - [Intro to Dart for Java Developers](https://codelabs.developers.google.com/codelabs/from-java-to-dart/index.html#0)
 - [Language Tour](https://www.dartlang.org/guides/language/language-tour)
 - [Library Tour](https://www.dartlang.org/guides/libraries/library-tour)
