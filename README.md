@@ -332,12 +332,12 @@ void main() {
   TodoActions actions = new TodoActions();
   TodoStore store = new TodoStore(actions);
 
-  var TodoList = (TodoApp()
+  var todoApp = (TodoApp()
     ..actions = actions
     ..store = store)();
 
   final container = querySelector('#app-container');
-  react_dom.render(TodoList, container);
+  react_dom.render(todoApp, container);
 }
 ```
 
@@ -352,7 +352,8 @@ The container previously mentioned is the `app-container` DOM node shown below. 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     
-    <title>ToDo Dart React</title>
+    <title>Dart React Todo</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
   </head>
   <body>
@@ -490,7 +491,7 @@ $ ddev test -n "TodoStore"
 
 ### Deploying
 
-When you're ready to compile your code to JS, `build` is used. This command uses
+When you're ready to compile your code to JS, we can use `pub build`. This command uses
 `dart2js` to compile Dart to a single JS bundle. `dart2js` will automatically
 remove any dead code or unused libraries. By default the
 compiled code is output to the `build/` directory.
@@ -508,6 +509,27 @@ This is useful for staging environments where debugging may be required.
 ```bash
 $ pub build --mode debug
 ```
+
+##### Netlify
+
+[Netlify](https://www.netlify.com) makes it extremely easy to deploy our compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo appliation from the command line.
+
+
+```bash
+$ npm install netlify-cli -g
+$ pub build
+$ netlify deploy
+? No site id specified, create a new site Yes
+? Path to deploy? (current dir) build/web/
+Deploying folder: build/web/
+
+Deploy is live (permalink):
+  http://5a11de44a6188f59f422296f.goofy-colden-2480f1.netlify.com
+
+Last build is always accessible on http://goofy-colden-2480f1.netlify.com
+```
+
+That's it! We can modify the settings for our site to change the site name. You can view the deployed todo app at https://dart-react-todo.netlify.com/. **Note**: This will create a `.netlify` file which you might want to commit for your application.
 
 ### Additional Resources
 

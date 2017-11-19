@@ -30,7 +30,7 @@ class TodoInputComponent extends UiComponent<TodoInputProps> {
       ..addTestId('todoInput')
       ..className = 'form-control mb-3 mt-5'
       ..placeholder = 'What do you need to do?'
-      ..onKeyPress = _checkForEnterPressed
+      ..onKeyDown = _checkForEnterPressed
       ..ref = (instance) {
         _todoInput = instance;
       })();

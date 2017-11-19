@@ -14,7 +14,7 @@ main() {
       var renderedInstance = render(TodoInput()..addTodo = handler);
       Element todoInput = getComponentRootDomByTestId(renderedInstance, 'todoInput');
   
-      keyPress(todoInput, {'key': 'Enter', 'keyCode': 13});
+      keyDown(todoInput, {'key': 'Enter', 'keyCode': 13});
       expect(called, isTrue);
     });
   });

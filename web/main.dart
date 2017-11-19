@@ -11,10 +11,10 @@ void main() {
   TodoActions actions = new TodoActions();
   TodoStore store = new TodoStore(actions);
 
-  var TodoList = (TodoApp()
+  var todoApp = (TodoApp()
     ..actions = actions
     ..store = store)();
 
   final container = querySelector('#app-container');
-  react_dom.render(TodoList, container);
+  react_dom.render(todoApp, container);
 }
