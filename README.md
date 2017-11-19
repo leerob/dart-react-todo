@@ -10,7 +10,7 @@
 
 ### Overview
 
-There are a million different ways to build a web app in today's landscape. Different languages and frameworks come and go and vary in popularity. There isn't one right way to do things and ultimately it's about weighing the pros and cons of the available tools at your disposable. The goal of this article is to inform you about another option you may have not previously considered: using React with Dart.
+There are a million different ways to build a web app in today's landscape. Different languages and frameworks come and go and vary in popularity. There isn't one right way to do things and ultimately it's about weighing the pros and cons of the available tools at your disposable. The goal of this document is to inform you about another option you may have not previously considered: using React with Dart.
 
 ### Table of Contents
 
@@ -30,10 +30,10 @@ There are a million different ways to build a web app in today's landscape. Diff
 ### Quickstart
 
 ```bash
-git clone https://github.com/leerob/dart-react-todo.git
-cd dart-react-todo
-pub get
-pub serve
+$ git clone https://github.com/leerob/dart-react-todo.git
+$ cd dart-react-todo
+$ pub get
+$ pub serve
 ```
 
 Open up http://localhost:8080/ to see the application.
@@ -48,11 +48,11 @@ Dart is a programming language originally [developed by Google](https://www.dart
 - Multi-threading support
 - And [much, much more](https://www.dartlang.org/guides/language)
 
-Google uses Dart for [AdWords](https://news.dartlang.org/2016/03/the-new-adwords-ui-uses-dart-we-asked.html), which makes up the majority of Google's revenue. It's also the language we use at [Workiva](https://www.workiva.com/) for our next-generation products. Workiva has committed to using Dart and has published a [variety of open-source software libraries](https://workiva.github.io/) to make developer's lives easier. If you're curious, here's a list of some companies [who use Dart.](https://www.dartlang.org/community/who-uses-dart) 
+Google uses Dart for [AdWords](https://news.dartlang.org/2016/03/the-new-adwords-ui-uses-dart-we-asked.html) which makes up the majority of Google's revenue. It's also the language we use at [Workiva](https://www.workiva.com/) for our next-generation products. Workiva has committed to using Dart and has published a [variety of OSS (open-source software) libraries](https://workiva.github.io/) to make developer's lives easier. If you're curious, here's a list of some companies [who use Dart.](https://www.dartlang.org/community/who-uses-dart) 
 
 ### Why React?
 
-As I mentioned at the start of this article, it's important to thoroughly evaluate all of the different framework options before choosing what's right for your team or company. I won't go too in-depth here on React vs. Angular since there are a [variety of articles](https://www.google.com/search?q=react+vs+angular) that dive into specifics, but I will note a couple wins for React:
+As I mentioned at the start of this document, it's important to thoroughly evaluate all of the different framework options before choosing what's right for your team or company. I won't go too in-depth here on React vs. Angular since there are a [variety of articles](https://www.google.com/search?q=react+vs+angular) that dive into specifics, but I will note a couple wins for React:
 
 - Uni-directional data flow
 - Virtual DOM
@@ -60,7 +60,7 @@ As I mentioned at the start of this article, it's important to thoroughly evalua
 
 ### Requirements
 
-Let's assume we are given some requirements to create a todo list as shown below. To help us "think" in React, I've outlined the design with boxes for each React component.
+Let's assume we are given some requirements to create a todo list as shown below. To help us ["think" in React](https://reactjs.org/docs/thinking-in-react.html), I've outlined the design with boxes for each React component.
 
 ![Todo List Spec Outlined](http://i.imgur.com/1Ra8ID8.jpg)
 
@@ -86,13 +86,13 @@ $ brew tap dart-lang/dart
 $ brew install dart --with-content-shell --with-dartium
 ```
 
-Dartium is a special build of Chromium distributed with the Dart SDK that includes the Dart VM. Using Dartium means you don’t have to compile your code to JavaScript until you’re ready to test on other browsers. This allows for a faster development iteration cycle.
+Dartium is a special build of [Chromium](https://en.wikipedia.org/wiki/Chromium_(web_browser)) distributed with the Dart SDK that includes the Dart VM. Using Dartium means you don’t have to compile your code to JavaScript until you’re ready to test on other browsers. This allows for a faster development iteration cycle.
 
-Dartium is going away in Dart 2.0. In Dart 2.0, you’ll use Chrome or other standard browsers for testing instead of Dartium thanks to a new development compiler called [dartdevc](https://webdev.dartlang.org/tools/dartdevc). Rather than go in-depth on Dartium, this tutorial will use Chrome instead in preparation for Dart 2.0. For information on Dart 2.0 see [Dart 2.0 Updates](https://www.dartlang.org/dart-2.0).
+Dartium is going away in Dart 2.0. In Dart 2.0, you’ll use Chrome or other standard browsers for testing instead of Dartium thanks to a new development compiler called [dartdevc](https://webdev.dartlang.org/tools/dartdevc). Rather than go in-depth on Dartium, this tutorial will use Chrome instead in preparation for Dart 2.0. For more information see [Dart 2.0 Updates](https://www.dartlang.org/dart-2.0).
 
 ### Building & Running
 
-The Dart SDK comes with a tool called `pub` to help manage your codebase. The most common pub command, `get`, is used to download a package's dependencies. This is the first thing you will need to do when checking out an
+The Dart SDK comes with a tool called `pub` to help manage your codebase. The most common command `pub get` is used to download a package's dependencies. This is the first thing you will need to do when checking out an
 existing Dart repository.
 
 `pub serve` starts up a development server for your Dart application. Refreshing your browser will recompile your Dart files to JavaScript. As previously mentioned, with Dart 2.0 you will be able to "hot reload" with dartdevc. You can download a [pre-release](https://www.dartlang.org/dart-2.0#testing) of Dart 2.0 if you need this now.
@@ -112,7 +112,7 @@ of having to set up your own development and build environments for each
 project. These tools provide dependency management, code compilation /
 minification, and debugging support out of the box.
 
-##### Directory & File Structure
+#### Directory & File Structure
 
 Dart has a prescribed directory structure in order to ensure that its tools work
 out of the box.
@@ -145,7 +145,7 @@ your_app/
   It will be automatically updated when dependencies change in
   `pubspec.yaml` or by running `pub upgrade`.
 
-##### [dart_dev](https://github.com/Workiva/dart_dev)
+#### [dart_dev](https://github.com/Workiva/dart_dev)
 
 dart_dev is our centralized tooling built on top of the Dart SDK. All Dart projects eventually share a common set of development requirements:
 
@@ -181,9 +181,9 @@ $ ddev format
 
 Now that we have an understanding of the language/tools we're working with, let's start creating the application! We will be utilizing some of Workiva's OSS. 
 
-##### [over_react](https://workiva.github.io/over_react/)
+#### [OverReact](https://workiva.github.io/over_react/)
 
-OverReact is our library for building statically-typed React UI components. The example below compares a render method for JSX and over_react that will have the exact same HTML markup result.
+OverReact is our library for building statically-typed React UI components. Since OverReact is built atop React JS, I strongly encourage you to gain familiarity with it first by reading this React JS tutorial. The example below compares a render method for JSX and OverReact that will have the exact same HTML markup result.
 
 * __React JS__ (JSX):
 
@@ -242,7 +242,7 @@ render() {
 
 As you can see, OverReact helps bridge the gap between Dart and React. If you're using VS Code, my colleague Jace has created some [OverReact code snippets](https://github.com/JaceHensley/vscode-over-react-snippets) that will help speed up your development. Now, let's talk about our front-end architecture.
 
-##### [w_flux](https://github.com/Workiva/w_flux)
+#### [w_flux](https://github.com/Workiva/w_flux)
 
 w_flux is our architecture library for Flux - a simple uni-directional data flow pattern that provides an MVC like architecture and works well with React UI components.
 
@@ -251,7 +251,7 @@ w_flux is our architecture library for Flux - a simple uni-directional data flow
 This library was inspired by [RefluxJS](https://github.com/reflux/refluxjs) and Facebook's [Flux](https://facebook.github.io/flux/). The same general principles apply here. For more information, please read the [README](https://github.com/Workiva/w_flux) in the w_flux repository.
 
 
-##### Defining Dependencies
+#### Defining Dependencies
 
 As previously mentioned, we'll use the `pubspec.yaml` file in our root directory to define the dependencies for our project. Let's take a look at the `pubspec.yaml` for the todo list.
 
@@ -286,7 +286,7 @@ transformers:
 
 This file tells `pub` which versions of the included packages it needs to retrieve. You can find more information about what all can be included in this file [here](https://www.dartlang.org/tools/pub/pubspec).
 
-##### /web/
+#### /web/
 
 Inside the web directory, we'll find the entry point into our application. This file sets up the `Actions` and `Store` for our Flux architecture. Then, it creates a new `TodoApp` component and renders it into our container.
 
@@ -341,7 +341,7 @@ The container previously mentioned is the `app-container` DOM node shown below. 
 ```
 
 
-##### /lib/src/
+#### /lib/src/
 
 Let's take a look at `actions.dart`. This defines the available operations we can perform.
 
@@ -367,7 +367,7 @@ class Todo {
 
 Each `Todo` object can be initialized with some content and has a completed state which is initially `false`.
 
-##### /stores/
+#### /stores/
 
 We now have some actions to dispatch. Next, we need a store to contain our application's data. For this example, we only need one store. Note that for larger applications, you will generally have multiple stores. Review the w_flux [README](https://github.com/Workiva/w_flux) for more information.
 
@@ -403,7 +403,7 @@ To summarize so far, we have:
 - Created a data model for a Todo item
 - Set up a store to contain the application's data
 
-##### /views/
+#### /views/
 
 The final piece will be the OverReact UI components to display the data. We defined a top-level `TodoApp` component in `main.dart`. This is what we refer to as a "container" component. It subscribes to our store and dispatches actions. It does *not* handle displaying UI components. 
 
@@ -488,7 +488,7 @@ This is useful for staging environments where debugging may be required.
 $ pub build --mode debug
 ```
 
-##### Netlify
+#### Netlify
 
 [Netlify](https://www.netlify.com) makes it extremely easy to deploy your compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo appliation from the command line. **Note**: This will create a `.netlify` file which you might want to commit for your application.
 
