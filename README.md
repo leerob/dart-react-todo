@@ -25,6 +25,7 @@ There are a million different ways to build a web app in today's landscape. Diff
 - [Testing](#testing)
 - [Continuous Integration](#continuous-integration)
 - [Deploying](#deploying)
+- [Your Turn](#your-turn)
 - [Additional Resources](#additional-resources)
 
 ### Quickstart
@@ -138,7 +139,7 @@ your_app/
   * This directory is served by default when running the application. It is common to
     include an `index.html` file in this directory.
 * **`pubspec.yaml`**
-  * This file defines all the metadata about your package such as: name, version, authors,
+  * This file defines all the metadata about your package such as name, version, authors,
   dependencies, etc.
 * **`pubspec.lock`**
   * This file specifies the specific version of each dependency installed in the project. 
@@ -183,7 +184,7 @@ Now that we have an understanding of the language/tools we're working with, let'
 
 #### [OverReact](https://workiva.github.io/over_react/)
 
-OverReact is our library for building statically-typed React UI components. Since OverReact is built atop React JS, I strongly encourage you to gain familiarity with it first by reading this React JS tutorial. The example below compares a render method for JSX and OverReact that will have the exact same HTML markup result.
+OverReact is our library for building statically-typed React UI components. Since OverReact is built atop React JS, I strongly encourage you to gain familiarity with it first by reading this [React JS tutorial](https://reactjs.org/docs/hello-world.html). The example below compares a render function for JSX and OverReact that will have the exact same HTML markup result.
 
 * __React JS__ (JSX):
 
@@ -255,6 +256,7 @@ This library was inspired by [RefluxJS](https://github.com/reflux/refluxjs) and 
 
 As previously mentioned, we'll use the `pubspec.yaml` file in our root directory to define the dependencies for our project. Let's take a look at the `pubspec.yaml` for the todo list.
 
+**pubspec.yaml**
 ```yaml
 name: todo_dart_react
 version: 1.0.0
@@ -345,6 +347,7 @@ The container previously mentioned is the `app-container` DOM node shown below. 
 
 Let's take a look at `actions.dart`. This defines the available operations we can perform.
 
+**actions.dart**
 ```dart
 class TodoActions {
   final Action<Todo> addTodo = new Action<Todo>();
@@ -356,6 +359,7 @@ class TodoActions {
 
 You'll notice some actions take a `Todo` parameter. Let's define the structure of our `Todo` model.
 
+**todo.dart**
 ```dart
 class Todo {
   String content;
@@ -371,6 +375,7 @@ Each `Todo` object can be initialized with some content and has a completed stat
 
 We now have some actions to dispatch. Next, we need a store to contain our application's data. For this example, we only need one store. **Note**: For larger applications, you will generally have multiple stores. Review the w_flux [README](https://github.com/Workiva/w_flux) for more information.
 
+**todo_store.dart**
 ```dart
 class TodoStore extends Store {
   TodoStore(TodoActions actions) : _actions = actions {
@@ -407,6 +412,7 @@ To summarize so far, we have:
 
 The final piece will be the OverReact UI components to display the data. We defined a top-level `TodoApp` component in `main.dart`. This is what we refer to as a "container" component. It subscribes to our store and dispatches actions. It does *not* handle displaying UI components. 
 
+**todo_app.dart**
 ```dart
 @Factory()
 UiFactory<TodoAppProps> TodoApp;
@@ -428,8 +434,9 @@ class TodoAppComponent extends FluxUiComponent<TodoAppProps> {
 
 **Note:** If the structure of this component is confusing, please review the [anatomy of an OverReact component.](https://github.com/Workiva/over_react#anatomy-of-an-overreact-component)
 
-The `TodoList` component is a "presentational" component. It has no knowledge of any stores/actions and simply renders the data passed along as props and uses [callbacks](https://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components) to communicate with the store. Let's take a look at the `renderListItems()` method of the `TodoList` component.
+The `TodoList` component is a "presentational" component. It has no knowledge of any stores/actions and simply renders the data passed along as props and uses [callbacks](https://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components) to communicate with the store. Let's take a look at the `renderListItems()` function of the `TodoList` component.
 
+**todo_list.dart**
 ```dart
 /// Create a new [TodoListItem] for each todo.
 List _renderListItems() {
@@ -448,18 +455,66 @@ List _renderListItems() {
 }
 ```
 
-Based on the todo data passed in as props, this method creates a new list of `TodoListItem` components. You'll notice there isn't a callback for completing a todo yet. We will implement that functionality soon.
+Based on the todo data passed in as props, this function creates a new list of `TodoListItem` components to be rendered. Those components will render as follows:
+
+**todo_list_item.dart**
+```dart
+render() {
+  return ListGroupItem()(
+    (Dom.input()
+      ..className = 'mr-3'
+      ..type = 'checkbox')(),
+    Dom.span()(
+      props.todo.content,
+    ),
+    (Button()
+      ..addTestId('deleteTodo')
+      ..className = 'float-right'
+      ..skin = ButtonSkin.DANGER
+      ..onClick = ((_) => props.deleteTodo(props.todo)))(
+      'Delete',
+    ),
+  );
+}
+```
+
+The `ListGroupItem` component is taken from the [OverReact examples](https://workiva.github.io/over_react/demos/). It models the [list group component](https://v4-alpha.getbootstrap.com/components/list-group/) from Bootstrap. You can find more OverReact example components located in `lib/src/components`. You'll notice we've added a test ID to the `Button` component using `..addTestId()`. Let's talk about how we can unit test this component.
 
 ### Testing
+
+All of the test files are located in the `test/` directory. For this example, I've only created unit tests. You could also create integration and functional tests here as well. Testing OverReact components is simple using [over_react_test]() along with the [React test utilities](https://github.com/cleandart/react-dart#testing-using-react-test-utilities). Let's look at how we could test our `TodoListItem` component to check it properly calls `deleteTodo` when the button is clicked.
+
+**todo_list_item_test.dart**
+```dart
+test('calls deleteTodo when button is clicked', () {
+  bool called = false;
+  Todo todo = new Todo('Testing!');
+  handler(DeleteTodoCallback) => called = true;
+
+  var renderedInstance = render(TodoListItem()
+    ..deleteTodo = handler
+    ..todo = todo);
+      
+  Element deleteButton = getComponentRootDomByTestId(renderedInstance, 'deleteTodo');
+  click(deleteButton);
+  expect(called, isTrue);
+});
+```
+
+This test creates a new handler for deleting a todo and passes it to the `TodoListItem` when rendering. Then, we can retrieve the delete button from the DOM of the rendered instance and simulate clicking the button. We can then expect that the handler was successfully called.
+
+**Note:** We don't need to test what happens *when* a todo is deleted here. For separation of concerns, we should unit test that it is successfully removed from the store in `todo_store_test.dart`. 
+
+We can now run all unit tests using the following command:
 
 ```bash
 $ ddev test
 ```
 
-You can also run specific test files using the -n flag.
+We can also run specific test files using the -n flag to specify a group.
 
 ```bash
-$ ddev test -n "TodoStore"
+$ ddev test -n "TodoListItem"
 ```
 
 ### Continuous Integration
@@ -490,7 +545,7 @@ $ pub build --mode debug
 
 #### Netlify
 
-[Netlify](https://www.netlify.com) makes it extremely easy to deploy your compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo appliation from the command line. 
+[Netlify](https://www.netlify.com) makes it extremely easy to deploy your compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo application from the command line. 
 
 **Note**: This will create a `.netlify` file which you might want to commit for your application.
 
@@ -510,6 +565,17 @@ Last build is always accessible on http://goofy-colden-2480f1.netlify.com
 ```
 
 That's it! We can modify the settings for our site to change the site name. You can view the deployed todo app at https://dart-react-todo.netlify.com/.
+
+### Your Turn
+
+The todo list isn't fully completed per our requirements. To fully finish the application, you'll need to:
+
+- [ ] Mark todos as completed when the checkbox is clicked
+- [ ] Add an action for clearing all completed todos 
+- [ ] Modify the `TodoStore` to listen to the new action
+- [ ] Create the `TodoFooter` component
+- [ ] Hook up the buttons in the footer to the store
+- [ ] Use icons inside the buttons
 
 ### Additional Resources
 
