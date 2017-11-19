@@ -213,31 +213,32 @@ OverReact is our library for building statically-typed React UI components. The 
   }
   ```
 
-  Let’s break down the OverReact fluent-style shown above
 
-  ```dart
-  render() {
-    // Create a builder for a <div>,
-    // add a CSS class name by cascading a typed setter,
-    // and invoke the builder with the HTML DOM <h1> and <button> children.
-    return (Dom.div()..className = 'container')(
+Let’s break down the OverReact fluent-style shown above.
 
-      // Create a builder for an <h1> and invoke it with children.
-      // No need for wrapping parentheses, since no props are added.
-      Dom.h1()('Click the button!'),
+```dart
+render() {
+  // Create a builder for a <div>,
+  // add a CSS class name by cascading a typed setter,
+  // and invoke the builder with the HTML DOM <h1> and <button> children.
+  return (Dom.div()..className = 'container')(
 
-      // Create a builder for a <button>,
-      (Dom.button()
-        // add a ubiquitous DOM prop exposed on all components,
-        // which Dom.button() forwards to its rendered DOM,
-        ..id = 'main_button'
-        // add another prop,
-        ..onClick = _handleClick
-      // and finally invoke the builder with children.
-      )('Click me')
-    );
-  }
-  ```
+    // Create a builder for an <h1> and invoke it with children.
+    // No need for wrapping parentheses, since no props are added.
+    Dom.h1()('Click the button!'),
+
+    // Create a builder for a <button>,
+    (Dom.button()
+      // add a ubiquitous DOM prop exposed on all components,
+      // which Dom.button() forwards to its rendered DOM,
+      ..id = 'main_button'
+      // add another prop,
+      ..onClick = _handleClick
+    // and finally invoke the builder with children.
+    )('Click me')
+  );
+}
+```
 
 As you can see, OverReact helps bridge the gap between Dart and React. If you're using VS Code, my colleague Jace has created some [OverReact code snippets](https://github.com/JaceHensley/vscode-over-react-snippets) that will help speed up your development. Now, let's talk about our front-end architecture.
 
