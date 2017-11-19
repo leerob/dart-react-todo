@@ -256,11 +256,11 @@ This library was inspired by [RefluxJS](https://github.com/reflux/refluxjs) and 
 As previously mentioned, we'll use the `pubspec.yaml` file in our root directory to define the dependencies for our project. Let's take a look at the `pubspec.yaml` for the todo list.
 
 ```yaml
-name: 'todo_dart_react'
+name: todo_dart_react
 version: 1.0.0
-description: 'Dart + React Todo List Example'
-homepage: 'https://github.com/leerob/dart-react-todo'
-author: 'Lee Robinson <lee.robinson@workiva.com>'
+description: Dart + React Todo List Example
+homepage: https://github.com/leerob/dart-react-todo
+author: Lee Robinson <lee.robinson@workiva.com>
 
 environment:
   sdk: '>=1.23.0 <2.0.0'
@@ -354,7 +354,7 @@ class TodoActions {
 }
 ```
 
-You'll notice some actions takes a `Todo` parameter. Let's define the structure of our `Todo` model.
+You'll notice some actions take a `Todo` parameter. Let's define the structure of our `Todo` model.
 
 ```dart
 class Todo {
@@ -369,7 +369,7 @@ Each `Todo` object can be initialized with some content and has a completed stat
 
 #### /stores/
 
-We now have some actions to dispatch. Next, we need a store to contain our application's data. For this example, we only need one store. Note that for larger applications, you will generally have multiple stores. Review the w_flux [README](https://github.com/Workiva/w_flux) for more information.
+We now have some actions to dispatch. Next, we need a store to contain our application's data. For this example, we only need one store. **Note**: For larger applications, you will generally have multiple stores. Review the w_flux [README](https://github.com/Workiva/w_flux) for more information.
 
 ```dart
 class TodoStore extends Store {
@@ -428,7 +428,7 @@ class TodoAppComponent extends FluxUiComponent<TodoAppProps> {
 
 **Note:** If the structure of this component is confusing, please review the [anatomy of an OverReact component.](https://github.com/Workiva/over_react#anatomy-of-an-overreact-component)
 
-The `TodoList` component is a "presentational" component. It has no knowledge of any stores/actions and simply renders the data passed along as props and uses [callbacks](https://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components) to communicate with the store. Let's take a look at the `renderListItems()` method of this component.
+The `TodoList` component is a "presentational" component. It has no knowledge of any stores/actions and simply renders the data passed along as props and uses [callbacks](https://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components) to communicate with the store. Let's take a look at the `renderListItems()` method of the `TodoList` component.
 
 ```dart
 /// Create a new [TodoListItem] for each todo.
@@ -490,7 +490,9 @@ $ pub build --mode debug
 
 #### Netlify
 
-[Netlify](https://www.netlify.com) makes it extremely easy to deploy your compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo appliation from the command line. **Note**: This will create a `.netlify` file which you might want to commit for your application.
+[Netlify](https://www.netlify.com) makes it extremely easy to deploy your compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo appliation from the command line. 
+
+**Note**: This will create a `.netlify` file which you might want to commit for your application.
 
 
 ```bash
