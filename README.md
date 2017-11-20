@@ -54,7 +54,7 @@ Google uses Dart for [AdWords](https://news.dartlang.org/2016/03/the-new-adwords
 
 ### Why React?
 
-As I mentioned at the start of this document, it's important to thoroughly evaluate all of the different framework options before choosing what's right for your team or company. I won't go too in-depth here on React vs. Angular since there are a [variety of articles](https://www.google.com/search?q=react+vs+angular) that dive into specifics, but I will note a couple wins for React:
+As I mentioned at the start of this document, it's important to thoroughly evaluate all of the different framework options before choosing what's right for your team or company. I won't go too in-depth here on [React](https://reactjs.org/) vs. [Angular](https://angular.io/) since there are a [variety of articles](https://www.google.com/search?q=react+vs+angular) that dive into specifics, but I will note a couple wins for React:
 
 - Uni-directional data flow
 - Declarative nature of rendering views
@@ -143,7 +143,7 @@ your_app/
   * This file defines all the metadata about your package such as name, version, authors,
   dependencies, etc.
 * **`pubspec.lock`**
-  * This file specifies the specific version of each dependency installed in the project. 
+  * This file specifies the version of each dependency installed in the project. 
   It will be automatically updated when dependencies change in
   `pubspec.yaml` or by running `pub upgrade`.
 
@@ -185,7 +185,7 @@ Now that we have an understanding of the language/tools we're working with, let'
 
 #### [OverReact](https://workiva.github.io/over_react/)
 
-OverReact is our library for building statically-typed React UI components. Since OverReact is built atop React JS, I strongly encourage you to gain familiarity with React first by reading [this tutorial](https://reactjs.org/docs/hello-world.html). The example below compares a render function for JSX and OverReact that will have the exact same HTML markup result.
+OverReact is our library for building statically-typed React UI components. Since OverReact is built on top of React JS, I strongly encourage you to gain familiarity with React first if you're not by reading [this tutorial](https://reactjs.org/docs/hello-world.html). The example below compares a `render()` function for JSX and OverReact that will have the exact same HTML markup result.
 
 * __React JS__ (JSX):
 
@@ -201,7 +201,7 @@ OverReact is our library for building statically-typed React UI components. Sinc
   }
   ```
 
-* __OverReact__:
+* __OverReact__ (Dart):
 
   ```dart
   render() {
@@ -346,7 +346,7 @@ The container previously mentioned is the `app-container` DOM node shown below. 
 
 #### /lib/src/
 
-Let's take a look at `actions.dart`. This defines the available operations we can perform.
+Let's take a look at `actions.dart`. This file defines the available operations we can perform.
 
 **actions.dart**
 ```dart
@@ -411,7 +411,7 @@ To summarize so far, we have:
 
 #### /views/
 
-The final piece will be the OverReact UI components to display the data. We defined a top-level `TodoApp` component in `main.dart`. This is what we refer to as a "container" component. It subscribes to our store and dispatches actions. It does *not* handle displaying UI components. 
+The final piece will be the OverReact UI components to display the store's data. We defined a top-level `TodoApp` component in `main.dart`. This is what we refer to as a ["container"](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) component. It subscribes to our store and dispatches actions. It does *not* handle displaying UI components. 
 
 **todo_app.dart**
 ```dart
@@ -483,7 +483,7 @@ The `ListGroupItem` component is taken from the [OverReact examples](https://wor
 
 ### Testing
 
-All of the test files are located in the `test/` directory. For this example, I've only created unit tests. You could also create integration and functional tests here as well. Testing OverReact components is simple using [over_react_test]() along with the [React test utilities](https://github.com/cleandart/react-dart#testing-using-react-test-utilities). Let's look at how we could test our `TodoListItem` component to check it properly calls `deleteTodo` when the button is clicked.
+All of the test files are located in the `test/` directory. For this example, I've only created unit tests. You could also create integration and functional tests here as well. Testing OverReact components is simple using [over_react_test](https://github.com/Workiva/over_react_test) along with the [React test utilities](https://github.com/cleandart/react-dart#testing-using-react-test-utilities). Let's look at how we can test our `TodoListItem` component to check it properly calls `deleteTodo` when the button is clicked.
 
 **todo_list_item_test.dart**
 ```dart
@@ -502,9 +502,9 @@ test('calls deleteTodo when button is clicked', () {
 });
 ```
 
-This test creates a new handler for deleting a todo and passes it to the `TodoListItem` when rendering. Then, we can retrieve the delete button from the DOM of the rendered instance and simulate clicking the button. We can then expect that the handler was successfully called.
+This test creates a new handler for deleting a todo and passes it to the `TodoListItem` when rendering. Then, we can retrieve the delete button from the DOM of the rendered instance and simulate clicking the button. Finally, we can expect that the handler was successfully called.
 
-**Note:** We don't need to test what happens *when* a todo is deleted here. For separation of concerns, we should unit test that it is successfully removed from the store in `todo_store_test.dart`. 
+**Note:** We don't need to test what happens *when* a todo is deleted here. For [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), we should unit test that it is successfully removed from the store in `todo_store_test.dart`. 
 
 We can now run all unit tests using the following command:
 
@@ -512,7 +512,7 @@ We can now run all unit tests using the following command:
 $ ddev test
 ```
 
-We can also run specific test files using the -n flag to specify a group.
+We can also run a specific test group using the -n flag and providing the group name.
 
 ```bash
 $ ddev test -n "TodoListItem"
@@ -527,7 +527,7 @@ Continuous Integration (CI) is the process of automating the building and testin
 
 When you're ready to compile your code to JS, we can use `pub build`. This command uses
 `dart2js` to compile Dart to a single JS bundle. `dart2js` will automatically
-remove any dead code or unused libraries. By default the
+remove any dead code or unused libraries. By default, the
 compiled code is output to the `build/` directory.
 
 ```bash
@@ -565,7 +565,7 @@ Deploy is live (permalink):
 Last build is always accessible on http://goofy-colden-2480f1.netlify.com
 ```
 
-That's it! We can modify the settings for our site to change the site name. You can view the deployed todo app at https://dart-react-todo.netlify.com/.
+That's it! 🎉 We can modify the settings for our site on Netlify to change the site name. You can view the deployed todo app at https://dart-react-todo.netlify.com/.
 
 ### Your Turn
 
