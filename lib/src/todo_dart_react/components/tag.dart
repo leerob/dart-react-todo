@@ -6,7 +6,7 @@ part of todo_dart_react;
 /// See: <http://v4-alpha.getbootstrap.com/components/tag/>
 @Factory()
 // ignore: undefined_identifier
-UiFactory<TagProps> Tag = $Tag;
+UiFactory<TagProps> Tag = _$Tag;
 
 @Props()
 class _$TagProps extends UiProps {
@@ -67,11 +67,4 @@ class TagSkin extends ClassNameConstant {
 
   /// [className] value: 'tag-info'
   static const TagSkin INFO = const TagSkin._('INFO', 'tag-info');
-}
-
-// AF-3369 This will be removed once the transition to Dart 2 is complete.
-// ignore: mixin_of_non_class, undefined_class
-class TagProps extends _$TagProps with _$TagPropsAccessorsMixin {
-  // ignore: undefined_identifier, undefined_class, const_initialized_with_non_constant_value
-  static const PropsMeta meta = $metaForTagProps;
 }

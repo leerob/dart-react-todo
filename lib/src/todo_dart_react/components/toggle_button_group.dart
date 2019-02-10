@@ -20,7 +20,7 @@ part of todo_dart_react;
 /// See: <http://v4-alpha.getbootstrap.com/components/buttons/#checkbox-and-radio-buttons>
 @Factory()
 // ignore: undefined_identifier
-UiFactory<ToggleButtonGroupProps> ToggleButtonGroup = $ToggleButtonGroup;
+UiFactory<ToggleButtonGroupProps> ToggleButtonGroup = _$ToggleButtonGroup;
 
 @Props()
 class _$ToggleButtonGroupProps extends ButtonGroupProps
@@ -100,18 +100,3 @@ class ToggleButtonGroupComponent
   UiFactory<ToggleButtonProps> get childFactory => ToggleButton;
 }
 
-// AF-3369 This will be removed once the transition to Dart 2 is complete.
-// ignore: mixin_of_non_class, undefined_class
-class ToggleButtonGroupProps extends _$ToggleButtonGroupProps
-    with _$ToggleButtonGroupPropsAccessorsMixin {
-  // ignore: undefined_identifier, undefined_class, const_initialized_with_non_constant_value
-  static const PropsMeta meta = $metaForToggleButtonGroupProps;
-}
-
-// AF-3369 This will be removed once the transition to Dart 2 is complete.
-// ignore: mixin_of_non_class, undefined_class
-class ToggleButtonGroupState extends _$ToggleButtonGroupState
-    with _$ToggleButtonGroupStateAccessorsMixin {
-  // ignore: undefined_identifier, undefined_class, const_initialized_with_non_constant_value
-  static const StateMeta meta = $metaForToggleButtonGroupState;
-}

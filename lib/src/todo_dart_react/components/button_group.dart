@@ -5,7 +5,7 @@ part of todo_dart_react;
 /// See: <http://v4-alpha.getbootstrap.com/components/button-group/>.
 @Factory()
 // ignore: undefined_identifier
-UiFactory<ButtonGroupProps> ButtonGroup = $ButtonGroup;
+UiFactory<ButtonGroupProps> ButtonGroup = _$ButtonGroup;
 
 @Props()
 class _$ButtonGroupProps extends UiProps {
@@ -150,17 +150,3 @@ final Map<ButtonSize, ButtonGroupSize> buttonToButtonGroupSize =
   ButtonSize.DEFAULT: ButtonGroupSize.DEFAULT,
   ButtonSize.LARGE: ButtonGroupSize.LARGE,
 };
-
-// AF-3369 This will be removed once the transition to Dart 2 is complete.
-// ignore: mixin_of_non_class, undefined_class
-class ButtonGroupProps extends _$ButtonGroupProps with _$ButtonGroupPropsAccessorsMixin {
-  // ignore: undefined_identifier, undefined_class, const_initialized_with_non_constant_value
-  static const PropsMeta meta = $metaForButtonGroupProps;
-}
-
-// AF-3369 This will be removed once the transition to Dart 2 is complete.
-// ignore: mixin_of_non_class, undefined_class
-class ButtonGroupState extends _$ButtonGroupState with _$ButtonGroupStateAccessorsMixin {
-  // ignore: undefined_identifier, undefined_class, const_initialized_with_non_constant_value
-  static const StateMeta meta = $metaForButtonGroupState;
-}
