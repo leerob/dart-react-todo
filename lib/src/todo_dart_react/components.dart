@@ -25,3 +25,5 @@ part 'components/progress.dart';
 part 'components/tag.dart';
 part 'components/toggle_button_group.dart';
 part 'components/toggle_button.dart';
+// ignore: uri_has_not_been_generated
+part 'components.over_react.g.dart';

@@ -1,10 +1,10 @@
 part of todo_dart_react;
 
 @Factory()
-UiFactory<TodoListItemProps> TodoListItem;
+UiFactory<TodoListItemProps> TodoListItem = _$TodoListItem;
 
 @Props()
-class TodoListItemProps extends UiProps {
+class _$TodoListItemProps extends UiProps {
   Todo todo;
   DeleteTodoCallback deleteTodo;
 }

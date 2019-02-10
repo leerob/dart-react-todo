@@ -31,11 +31,13 @@ There are a million different ways to build a web app in today's landscape. Diff
 
 ### Quickstart
 
+If you already have Dart installed and configured for Dart 2.0, you can use the quick start.
+
 ```bash
 $ git clone https://github.com/leerob/dart-react-todo.git
 $ cd dart-react-todo
 $ pub get
-$ pub serve
+$ pub run build_runner serve
 ```
 
 Open up http://localhost:8080/ to see the application.
@@ -85,25 +87,19 @@ You can install Dart on macOS using Homebrew.
 
 ```bash
 $ brew tap dart-lang/dart
-$ brew install dart --with-content-shell --with-dartium
+$ brew install dart
 ```
-
-Dartium is a special build of [Chromium](https://en.wikipedia.org/wiki/Chromium_(web_browser)) distributed with the Dart SDK that includes the Dart VM. Using Dartium means you don’t have to compile your code to JavaScript until you’re ready to test on other browsers. This allows for a faster development iteration cycle.
-
-Dartium is going away in Dart 2.0. In Dart 2.0, you’ll use Chrome or other standard browsers for testing instead of Dartium thanks to a new development compiler called [dartdevc](https://webdev.dartlang.org/tools/dartdevc). Rather than go in-depth on Dartium, this tutorial will use Chrome instead in preparation for Dart 2.0. For more information see [Dart 2.0 Updates](https://www.dartlang.org/dart-2.0).
 
 ### Building & Running
 
 The Dart SDK comes with a tool called `pub` to help manage your codebase. The most common command `pub get` is used to download a package's dependencies. This is the first thing you will need to do when checking out an
 existing Dart repository.
 
-`pub serve` starts up a development server for your Dart application. Refreshing your browser will recompile your Dart files to JavaScript. As previously mentioned, with Dart 2.0 you will be able to "hot reload" with dartdevc. You can download a [pre-release](https://www.dartlang.org/dart-2.0#testing) of Dart 2.0 if you need this now.
-
-To retrieve all of the dependencies for the todo application and start a server, we can run:
+`webdev serve` starts up a development server for your Dart application, fully complete with hot reloading thanks to Dart 2.0. To retrieve all of the dependencies for the todo application and start a server, we can run:
 
 ```bash
 $ pub get
-$ pub serve
+$ pub run build_runner serve
 ```
 Now, we can open up http://localhost:8080/ to see the todo application.
 
@@ -215,33 +211,6 @@ OverReact is our library for building statically-typed React UI components. Sinc
   }
   ```
 
-
-Let’s break down the OverReact fluent-style shown above.
-
-```dart
-render() {
-  // Create a builder for a <div>,
-  // add a CSS class name by cascading a typed setter,
-  // and invoke the builder with the HTML DOM <h1> and <button> children.
-  return (Dom.div()..className = 'container')(
-
-    // Create a builder for an <h1> and invoke it with children.
-    // No need for wrapping parentheses, since no props are added.
-    Dom.h1()('Click the button!'),
-
-    // Create a builder for a <button>,
-    (Dom.button()
-      // add a ubiquitous DOM prop exposed on all components,
-      // which Dom.button() forwards to its rendered DOM,
-      ..id = 'main_button'
-      // add another prop,
-      ..onClick = _handleClick
-    // and finally invoke the builder with children.
-    )('Click me')
-  );
-}
-```
-
 OverReact helps bridge the gap between Dart and React. If you're using VS Code, my colleague Jace has created some [OverReact code snippets](https://github.com/JaceHensley/vscode-over-react-snippets) that will help speed up your development. Now, let's talk about our front-end architecture.
 
 #### [w_flux](https://github.com/Workiva/w_flux)
@@ -260,31 +229,28 @@ As previously mentioned, we'll use the `pubspec.yaml` file in our root directory
 **pubspec.yaml**
 ```yaml
 name: todo_dart_react
-version: 1.0.0
+version: 2.0.0
 description: Dart + React Todo List Example
 homepage: https://github.com/leerob/dart-react-todo
-author: Lee Robinson <lee.robinson@workiva.com>
+author: Lee Robinson <lrobinson2011@gmail.com>
 
 environment:
-  sdk: '>=1.23.0 <2.0.0'
+  sdk: '>=2.1.0 <3.0.0'
 
 dependencies:
-  w_flux: ^2.9.4
-  over_react: ^1.18.1
-  react: ^3.6.0
+  over_react: ^2.0.0-alpha
+  w_flux: ^2.10.1
+  react: ^4.6.0
 
 dev_dependencies:
-  coverage: ^0.8.0
-  test: ^0.12.28
-  over_react_test: ^1.3.1
-  dart_dev: ^1.8.1
+  build_runner: ^1.1.2
+  build_test: ^0.10.3
+  build_web_compilers: ^1.0.0
+  coverage: ^0.12.4
+  dart_dev: ^2.0.3
   dart_style: ^1.0.8
-
-transformers:
-- over_react
-- $dart2js
-- test/pub_serve:
-    $include: test/**.dart
+  over_react_test: ^2.3.0
+  test: ^1.5.3
 ```
 
 This file tells `pub` which versions of the included packages it needs to retrieve. You can find more information about what all can be included in this file [here](https://www.dartlang.org/tools/pub/pubspec).
@@ -337,8 +303,7 @@ The container previously mentioned is the `app-container` DOM node shown below. 
 
     <script src="./packages/react/react.js"></script>
     <script src="./packages/react/react_dom.js"></script>
-    <script src="main.dart" type="application/dart"></script>
-    <script src="./packages/browser/dart.js"></script>
+    <script defer src="main.dart.js"></script>
   </body>
 </html>
 ```
@@ -525,13 +490,13 @@ Continuous Integration (CI) is the process of automating the building and testin
 
 ### Deploying
 
-When you're ready to compile your code to JS, we can use `pub build`. This command uses
+When you're ready to compile your code to JS, we can use `pub run build_runner build`. This command uses
 `dart2js` to compile Dart to a single JS bundle. `dart2js` will automatically
 remove any dead code or unused libraries. By default, the
 compiled code is output to the `build/` directory.
 
 ```bash
-$ pub build
+$ pub run build_runner build
 ```
 
 The `build` command has two modes, `release` and `debug`. It defaults to
@@ -541,7 +506,7 @@ contain `.dart` source files next to compiled code for use with source maps.
 This is useful for staging environments where debugging may be required.
 
 ```bash
-$ pub build --mode debug
+$ pub run build_runner build --mode debug
 ```
 
 #### Netlify
@@ -553,7 +518,7 @@ $ pub build --mode debug
 
 ```bash
 $ npm install netlify-cli -g
-$ pub build
+$ pub run build_runner build
 $ netlify deploy
 ? No site id specified, create a new site Yes
 ? Path to deploy? (current dir) build/web/

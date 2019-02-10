@@ -1,10 +1,10 @@
 part of todo_dart_react;
 
 @Factory()
-UiFactory<TodoAppProps> TodoApp;
+UiFactory<TodoAppProps> TodoApp = _$TodoApp;
 
 @Props()
-class TodoAppProps extends FluxUiProps<TodoActions, TodoStore> {}
+class _$TodoAppProps extends FluxUiProps<TodoActions, TodoStore> {}
 
 @Component()
 class TodoAppComponent extends FluxUiComponent<TodoAppProps> {
