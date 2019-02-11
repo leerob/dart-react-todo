@@ -1,4 +1,4 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 class TodoStore extends Store {
   TodoStore(TodoActions actions) : _actions = actions {

@@ -1,4 +1,4 @@
-part of todo_dart_react;
+part of 'components.dart';
 
 class TodoActions {
   final Action<Todo> addTodo = new Action<Todo>();

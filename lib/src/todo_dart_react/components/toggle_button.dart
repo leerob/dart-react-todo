@@ -1,19 +1,14 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 /// Use [ToggleButton]s in order to render functional `<input type="checkbox">`
 /// or `<input type="radio">` elements that look like a [Button].
 ///
 /// See: <http://v4-alpha.getbootstrap.com/components/buttons/#checkbox-and-radio-buttons>
 @Factory()
-// ignore: undefined_identifier
 UiFactory<ToggleButtonProps> ToggleButton = _$ToggleButton;
 
 @Props()
-class _$ToggleButtonProps extends ButtonProps
-    with
-        AbstractInputPropsMixin,
-        // ignore: mixin_of_non_class, undefined_class
-        $AbstractInputPropsMixin {
+class _$ToggleButtonProps extends ButtonProps with AbstractInputPropsMixin {
   /// Whether the `<input>` rendered by the [ToggleButton] should have focus upon mounting.
   ///
   /// _Proxies [DomProps.autoFocus]._
@@ -53,11 +48,7 @@ class _$ToggleButtonProps extends ButtonProps
 }
 
 @State()
-class _$ToggleButtonState extends ButtonState
-    with
-        AbstractInputStateMixin,
-        // ignore: mixin_of_non_class, undefined_class
-        $AbstractInputStateMixin {
+class _$ToggleButtonState extends ButtonState with AbstractInputStateMixin {
   /// Tracks if the [ToggleButton] is focused. Determines whether to render with the `js-focus` CSS
   /// class.
   ///
@@ -206,4 +197,3 @@ class ToggleButtonComponent extends ButtonComponent<ToggleButtonProps, ToggleBut
   /// [AbstractInputStateMixin.id] _(auto-generated)_.
   String get id => props.id ?? state.id;
 }
-

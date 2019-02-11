@@ -1,5 +1,3 @@
-library todo_dart_react;
-
 import 'dart:html';
 import 'dart:math';
 

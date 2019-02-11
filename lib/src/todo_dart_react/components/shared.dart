@@ -1,4 +1,4 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 /// A class of possible HTML `type` attribute values to be placed on a [Dom.button].
 class ButtonType extends DebugFriendlyConstant {
@@ -39,12 +39,7 @@ class ToggleBehaviorType extends DebugFriendlyConstant {
 }
 
 @PropsMixin()
-abstract class AbstractInputPropsMixin {
-  // To ensure the codemod regression checking works properly, please keep this
-  // field at the top of the class!
-  // ignore: undefined_identifier, undefined_class, const_initialized_with_non_constant_value
-  static const PropsMeta meta = _$metaForAbstractInputPropsMixin;
-
+abstract class _$AbstractInputPropsMixin {
   Map get props;
 
   /// The id for the input.
@@ -81,12 +76,7 @@ abstract class AbstractInputPropsMixin {
 }
 
 @StateMixin()
-abstract class AbstractInputStateMixin {
-  // To ensure the codemod regression checking works properly, please keep this
-  // field at the top of the class!
-  // ignore: undefined_identifier, undefined_class, const_initialized_with_non_constant_value
-  static const StateMeta meta = _$metaForAbstractInputStateMixin;
-
+abstract class _$AbstractInputStateMixin {
   Map get state;
 
   /// An auto-generated GUID, used as a fallback when the [AbstractInputPropsMixin.id] prop is unspecified,
