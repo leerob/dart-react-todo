@@ -6,8 +6,8 @@
 </h1>
 
 [![Build Status](https://travis-ci.org/leerob/dart-react-todo.svg?branch=master)](https://travis-ci.org/leerob/dart-react-todo)
-[![codecov](https://codecov.io/gh/leerob/dart-react-todo/branch/master/graph/badge.svg)](https://codecov.io/gh/leerob/dart-react-todo)
-[![Strong Mode Compliant](https://img.shields.io/badge/strong_mode-on-brightgreen.svg)](https://github.com/leerob/dart-react-todo/blob/master/analysis_options.yaml#L2)
+
+> Update (2019): This tutorial has been updated for [Dart 2.0](https://www.dartlang.org/dart-2) and [OverReact 2.0](https://github.com/Workiva/over_react/releases/tag/2.0.0) 🎉
 
 ### Overview
 
@@ -52,7 +52,7 @@ Dart is a programming language originally [developed by Google](https://www.dart
 - Multi-threading support
 - And [much, much more](https://www.dartlang.org/guides/language)
 
-Google uses Dart for [AdWords](https://news.dartlang.org/2016/03/the-new-adwords-ui-uses-dart-we-asked.html) which makes up the majority of Google's revenue. It's also the language we use at [Workiva](https://www.workiva.com/) for our next-generation products. Workiva has committed to using Dart and has published a [variety of OSS (open-source software) libraries](https://workiva.github.io/) to make developer's lives easier. If you're curious, here's a list of some companies [who use Dart.](https://www.dartlang.org/community/who-uses-dart) 
+Google uses Dart for [AdWords](https://news.dartlang.org/2016/03/the-new-adwords-ui-uses-dart-we-asked.html) which makes up the majority of Google's revenue. It's also the language used at [Workiva](https://www.workiva.com/) for their next-generation products. Workiva has committed to using Dart and has published a [variety of OSS (open-source software) libraries](https://workiva.github.io/) to make developer's lives easier. If you're curious, here's a list of some companies [who use Dart.](https://www.dartlang.org/community/who-uses-dart)
 
 ### Why React?
 
@@ -67,7 +67,6 @@ As I mentioned at the start of this document, it's important to thoroughly evalu
 Let's assume we are given some requirements to create a todo list as shown below. To help us ["think" in React](https://reactjs.org/docs/thinking-in-react.html), I've outlined the design with boxes for each React component.
 
 ![Todo List Spec Outlined](http://i.imgur.com/1Ra8ID8.jpg)
-
 
 ### Getting Started
 
@@ -95,12 +94,13 @@ $ brew install dart
 The Dart SDK comes with a tool called `pub` to help manage your codebase. The most common command `pub get` is used to download a package's dependencies. This is the first thing you will need to do when checking out an
 existing Dart repository.
 
-`webdev serve` starts up a development server for your Dart application, fully complete with hot reloading thanks to Dart 2.0. To retrieve all of the dependencies for the todo application and start a server, we can run:
+`pub run build_runner serve` starts up a development server for your Dart application, fully complete with hot reloading thanks to Dart 2.0. To retrieve all of the dependencies for the todo application and start a server, we can run:
 
 ```bash
 $ pub get
 $ pub run build_runner serve
 ```
+
 Now, we can open up http://localhost:8080/ to see the todo application.
 
 ### Dart Development Environment
@@ -126,26 +126,26 @@ your_app/
 └── pubspec.yaml
 ```
 
-* **`lib/`**
-  * Contains all internal implementation code.
-* **`test/`**
-  * Contains all unit, integration, and functional tests.
-* **`tool/`**
-  * Contains development tools, scripts, and configuration.
-* **`web/`**
-  * This directory is served by default when running the application. It is common to
+- **`lib/`**
+  - Contains all internal implementation code.
+- **`test/`**
+  - Contains all unit, integration, and functional tests.
+- **`tool/`**
+  - Contains development tools, scripts, and configuration.
+- **`web/`**
+  - This directory is served by default when running the application. It is common to
     include an `index.html` file in this directory.
-* **`pubspec.yaml`**
-  * This file defines all the metadata about your package such as name, version, authors,
-  dependencies, etc.
-* **`pubspec.lock`**
-  * This file specifies the version of each dependency installed in the project. 
-  It will be automatically updated when dependencies change in
-  `pubspec.yaml` or by running `pub upgrade`.
+- **`pubspec.yaml`**
+  - This file defines all the metadata about your package such as name, version, authors,
+    dependencies, etc.
+- **`pubspec.lock`**
+  - This file specifies the version of each dependency installed in the project.
+    It will be automatically updated when dependencies change in
+    `pubspec.yaml` or by running `pub upgrade`.
 
 #### [dart_dev](https://github.com/Workiva/dart_dev)
 
-dart_dev is our centralized tooling built on top of the Dart SDK. All Dart projects eventually share a common set of development requirements:
+dart_dev is a centralized tooling package built on top of the Dart SDK. All Dart projects eventually share a common set of development requirements:
 
 - Tests (unit, integration, and functional)
 - Code coverage
@@ -153,12 +153,11 @@ dart_dev is our centralized tooling built on top of the Dart SDK. All Dart proje
 - Static analysis to detect issues
 - Documentation generation
 
-The Dart SDK provides the necessary tooling to accomplish the tasks mentioned above but lacks a consistent usage pattern across multiple projects. Using dart_dev, a single configuration file will get our project configured and ready to use a variety of command line arguments. 
+The Dart SDK provides the necessary tooling to accomplish the tasks mentioned above but lacks a consistent usage pattern across multiple projects. Using dart_dev, a single configuration file will get our project configured and ready to use a variety of command line arguments.
 
-For example: let's analyze and format our entire code base.
+For example: let's format the entire code base.
 
 ```bash
-$ pub run dart_dev analyze
 $ pub run dart_dev format
 ```
 
@@ -168,22 +167,21 @@ To make things even more simple, we can set up a bash alias
 $ alias ddev='pub run dart_dev'
 ```
 
-which turns the previous commands into:
+which turns the previou command into:
 
 ```bash
-$ ddev analyze
 $ ddev format
 ```
 
 ### Building the Application
 
-Now that we have an understanding of the language/tools we're working with, let's start creating the application! We will be utilizing some of Workiva's OSS. 
+Now that we have an understanding of the language/tools we're working with, let's start creating the application! We will be utilizing some of Workiva's OSS.
 
 #### [OverReact](https://workiva.github.io/over_react/)
 
-OverReact is our library for building statically-typed React UI components. Since OverReact is built on top of React JS, I strongly encourage you to gain familiarity with React first if you're not by reading [this tutorial](https://reactjs.org/docs/hello-world.html). The example below compares a `render()` function for JSX and OverReact that will have the exact same HTML markup result.
+OverReact is a library for building statically-typed React UI components. Since OverReact is built on top of React JS, I strongly encourage you to gain familiarity with React first if you're not by reading [this tutorial](https://reactjs.org/docs/hello-world.html). The example below compares a `render()` function for JSX and OverReact that will have the exact same HTML markup result.
 
-* __React JS__ (JSX):
+- **React JS** (JSX):
 
   ```jsx
   render() {
@@ -197,7 +195,7 @@ OverReact is our library for building statically-typed React UI components. Sinc
   }
   ```
 
-* __OverReact__ (Dart):
+- **OverReact** (Dart):
 
   ```dart
   render() {
@@ -211,22 +209,22 @@ OverReact is our library for building statically-typed React UI components. Sinc
   }
   ```
 
-OverReact helps bridge the gap between Dart and React. If you're using VS Code, my colleague Jace has created some [OverReact code snippets](https://github.com/JaceHensley/vscode-over-react-snippets) that will help speed up your development. Now, let's talk about our front-end architecture.
+OverReact helps bridge the gap between Dart and React. If you're using VS Code, you can utilize [OverReact code snippets](https://github.com/JaceHensley/vscode-over-react-snippets) to help speed up your development. Now, let's talk about our front-end architecture.
 
 #### [w_flux](https://github.com/Workiva/w_flux)
 
-w_flux is our architecture library for Flux - a simple uni-directional data flow pattern that provides an MVC like architecture and works well with React UI components.
+w_flux is an architecture library with uni-directional data flow that provides an MVC like architecture and works well with React UI components.
 
 ![w_flux Diagram](http://i.imgur.com/ISwUu51.jpg)
 
 This library was inspired by [RefluxJS](https://github.com/reflux/refluxjs) and Facebook's [Flux](https://facebook.github.io/flux/). The same general principles apply here. For more information, please read the [README](https://github.com/Workiva/w_flux) in the w_flux repository.
-
 
 #### Defining Dependencies
 
 As previously mentioned, we'll use the `pubspec.yaml` file in our root directory to define the dependencies for our project. Let's take a look at the `pubspec.yaml` for the todo list.
 
 **pubspec.yaml**
+
 ```yaml
 name: todo_dart_react
 version: 2.0.0
@@ -235,10 +233,10 @@ homepage: https://github.com/leerob/dart-react-todo
 author: Lee Robinson <lrobinson2011@gmail.com>
 
 environment:
-  sdk: '>=2.1.0 <3.0.0'
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  over_react: ^2.0.0-alpha
+  over_react: ^2.0.0
   w_flux: ^2.10.1
   react: ^4.6.0
 
@@ -260,6 +258,7 @@ This file tells `pub` which versions of the included packages it needs to retrie
 Inside the web directory, we'll find the entry point into our application. This file sets up the `Actions` and `Store` for our Flux architecture. Then, it creates a new `TodoApp` component and renders it into our container.
 
 **main.dart**
+
 ```dart
 import 'dart:html';
 
@@ -286,17 +285,24 @@ void main() {
 The container previously mentioned is the `app-container` DOM node shown below. You'll notice I've included [Bootstrap](https://getbootstrap.com/) to handle the styling our of UI components.
 
 **index.html**
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+
     <title>Dart React Todo</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
   </head>
   <body>
     <div id="app-container" class="container"></div>
@@ -308,12 +314,12 @@ The container previously mentioned is the `app-container` DOM node shown below. 
 </html>
 ```
 
-
 #### /lib/src/
 
 Let's take a look at `actions.dart`. This file defines the available operations we can perform.
 
 **actions.dart**
+
 ```dart
 class TodoActions {
   final Action<Todo> addTodo = new Action<Todo>();
@@ -326,6 +332,7 @@ class TodoActions {
 You'll notice some actions take a `Todo` parameter. Let's define the structure of our `Todo` model.
 
 **todo.dart**
+
 ```dart
 class Todo {
   String content;
@@ -342,6 +349,7 @@ Each `Todo` object can be initialized with some content and has a completed stat
 We now have some actions to dispatch. Next, we need a store to contain our application's data. For this example, we only need one store. **Note**: For larger applications, you will generally have multiple stores. Review the w_flux [README](https://github.com/Workiva/w_flux) for more information.
 
 **todo_store.dart**
+
 ```dart
 class TodoStore extends Store {
   TodoStore(TodoActions actions) : _actions = actions {
@@ -365,7 +373,7 @@ class TodoStore extends Store {
 }
 ```
 
-When our `TodoStore` is constructed, it populates our todo list with some pre-defined `Todo` objects. It also connects our actions to the store using `triggerOnAction()`. This function will re-render all components that are watching the store after the action has completed. You'll also notice we have a public getter to obtain the list of todos. 
+When our `TodoStore` is constructed, it populates our todo list with some pre-defined `Todo` objects. It also connects our actions to the store using `triggerOnAction()`. This function will re-render all components that are watching the store after the action has completed. You'll also notice we have a public getter to obtain the list of todos.
 
 To summarize so far, we have:
 
@@ -376,15 +384,16 @@ To summarize so far, we have:
 
 #### /views/
 
-The final piece will be the OverReact UI components to display the store's data. We defined a top-level `TodoApp` component in `main.dart`. This is what we refer to as a ["container"](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) component. It subscribes to our store and dispatches actions. It does *not* handle displaying UI components. 
+The final piece will be the OverReact UI components to display the store's data. We defined a top-level `TodoApp` component in `main.dart`. This is what we refer to as a ["container"](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) component. It subscribes to our store and dispatches actions. It does _not_ handle displaying UI components.
 
 **todo_app.dart**
+
 ```dart
 @Factory()
-UiFactory<TodoAppProps> TodoApp;
+UiFactory<TodoAppProps> TodoApp = _$TodoApp;
 
 @Props()
-class TodoAppProps extends FluxUiProps<TodoActions, TodoStore> {}
+class _$TodoAppProps extends FluxUiProps<TodoActions, TodoStore> {}
 
 @Component()
 class TodoAppComponent extends FluxUiComponent<TodoAppProps> {
@@ -403,6 +412,7 @@ class TodoAppComponent extends FluxUiComponent<TodoAppProps> {
 The `TodoList` component is a "presentational" component. It has no knowledge of any stores/actions and simply renders the data passed along as props and uses [callbacks](https://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components) to communicate with the store. Let's take a look at the `renderListItems()` function of the `TodoList` component.
 
 **todo_list.dart**
+
 ```dart
 /// Create a new [TodoListItem] for each todo.
 List _renderListItems() {
@@ -424,6 +434,7 @@ List _renderListItems() {
 Based on the todo data passed in as props, this function creates a new list of `TodoListItem` components to be rendered. Those components will render as follows:
 
 **todo_list_item.dart**
+
 ```dart
 render() {
   return ListGroupItem()(
@@ -451,6 +462,7 @@ The `ListGroupItem` component is taken from the [OverReact examples](https://wor
 All of the test files are located in the `test/` directory. For this example, I've only created unit tests. You could also create integration and functional tests here as well. Testing OverReact components is simple using [over_react_test](https://github.com/Workiva/over_react_test) along with the [React test utilities](https://github.com/cleandart/react-dart#testing-using-react-test-utilities). Let's look at how we can test our `TodoListItem` component to check it properly calls `deleteTodo` when the button is clicked.
 
 **todo_list_item_test.dart**
+
 ```dart
 test('calls deleteTodo when button is clicked', () {
   bool called = false;
@@ -460,7 +472,7 @@ test('calls deleteTodo when button is clicked', () {
   var renderedInstance = render(TodoListItem()
     ..deleteTodo = handler
     ..todo = todo);
-      
+
   Element deleteButton = getComponentRootDomByTestId(renderedInstance, 'deleteTodo');
   click(deleteButton);
   expect(called, isTrue);
@@ -469,7 +481,7 @@ test('calls deleteTodo when button is clicked', () {
 
 This test creates a new handler for deleting a todo and passes it to the `TodoListItem` when rendering. Then, we can retrieve the delete button from the DOM of the rendered instance and simulate clicking the button. Finally, we can expect that the handler was successfully called.
 
-**Note:** We don't need to test what happens *when* a todo is deleted here. For [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), we should unit test that it is successfully removed from the store in `todo_store_test.dart`. 
+**Note:** We don't need to test what happens _when_ a todo is deleted here. For [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), we should unit test that it is successfully removed from the store in `todo_store_test.dart`.
 
 We can now run all unit tests using the following command:
 
@@ -485,12 +497,11 @@ $ ddev test -n "TodoListItem"
 
 ### Continuous Integration
 
-Continuous Integration (CI) is the process of automating the building and testing of your code every time you commit changes to GitHub. We can utilize [Travis CI](https://travis-ci.org/) to easily perform static analysis, check formatting, run unit tests, and generate code coverage using a `.travis.yml` file. You don't need to worry about configuring this file - it's already all set up and running in this repository. If you fork this repo to create your own application, you will need to sync Travis CI and [codecov](https://codecov.io/) with your GitHub account to trigger builds when you commit changes and generate coverage.
-
+Continuous Integration (CI) is the process of automating the building and testing of your code every time you commit changes to GitHub. We can utilize [Travis CI](https://travis-ci.org/) to easily perform static analysis, check formatting, run unit tests, and generate code coverage using a `.travis.yml` file. You don't need to worry about configuring this file - it's already all set up and running in this repository. If you fork this repo to create your own application, you will need to sync Travis CI with your GitHub account to trigger builds when you commit changes.
 
 ### Deploying
 
-When you're ready to compile your code to JS, we can use `pub run build_runner build`. This command uses
+When you're ready to compile your code to JS, we can use `pub run build_runner build`. [This command](https://webdev.dartlang.org/tools/webdev#webdev-build) uses
 `dart2js` to compile Dart to a single JS bundle. `dart2js` will automatically
 remove any dead code or unused libraries. By default, the
 compiled code is output to the `build/` directory.
@@ -499,22 +510,11 @@ compiled code is output to the `build/` directory.
 $ pub run build_runner build
 ```
 
-The `build` command has two modes, `release` and `debug`. It defaults to
-`release`, which will minify the resulting JS and omit the `.dart` files from
-the output directory. In `debug` mode, the output will be un-minified and will
-contain `.dart` source files next to compiled code for use with source maps.
-This is useful for staging environments where debugging may be required.
-
-```bash
-$ pub run build_runner build --mode debug
-```
-
 #### Netlify
 
-[Netlify](https://www.netlify.com) makes it extremely easy to deploy your compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo application from the command line. 
+[Netlify](https://www.netlify.com) makes it extremely easy to deploy your compiled code. You can create an account for free and have the ability to upgrade to utilize features like custom domain names, SSL, and more. Let's look at how we can deploy our todo application from the command line.
 
 **Note**: This will create a `.netlify` file which you might want to commit for your application.
-
 
 ```bash
 $ npm install netlify-cli -g
@@ -537,7 +537,7 @@ That's it! 🎉 We can modify the settings for our site on Netlify to change the
 The todo list isn't fully completed per our requirements. To fully finish the application, you'll need to:
 
 - [ ] Mark todos as completed when the checkbox is clicked
-- [ ] Add an action for clearing all completed todos 
+- [ ] Add an action for clearing all completed todos
 - [ ] Modify the `TodoStore` to listen to the new action
 - [ ] Create the `TodoFooter` component
 - [ ] Hook up the buttons in the footer to the store
