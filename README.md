@@ -167,7 +167,7 @@ To make things even more simple, we can set up a bash alias
 $ alias ddev='pub run dart_dev'
 ```
 
-which turns the previou command into:
+which turns the previous command into:
 
 ```bash
 $ ddev format
@@ -230,7 +230,7 @@ name: todo_dart_react
 version: 2.0.0
 description: Dart + React Todo List Example
 homepage: https://github.com/leerob/dart-react-todo
-author: Lee Robinson <lrobinson2011@gmail.com>
+author: Lee Robinson <me@leerob.io>
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
