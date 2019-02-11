@@ -1,11 +1,10 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 /// Bootstrap's `Progress` component stylizes the HTML5 `<progress>` element with a
 /// few extra CSS classes and some crafty browser-specific CSS.
 ///
 /// See: <http://v4-alpha.getbootstrap.com/components/progress/>
 @Factory()
-// ignore: undefined_identifier
 UiFactory<ProgressProps> Progress = _$Progress;
 
 @Props()
@@ -172,4 +171,3 @@ class ProgressSkin extends ClassNameConstant {
   /// [className] value: 'progress-info'
   static const ProgressSkin INFO = const ProgressSkin._('INFO', 'progress-info');
 }
-

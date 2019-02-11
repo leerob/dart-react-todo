@@ -1,10 +1,9 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 /// Groups a series of [Button]s together on a single line.
 ///
 /// See: <http://v4-alpha.getbootstrap.com/components/button-group/>.
 @Factory()
-// ignore: undefined_identifier
 UiFactory<ButtonGroupProps> ButtonGroup = _$ButtonGroup;
 
 @Props()

@@ -1,11 +1,10 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 /// Nest one or more `ListGroupItem` components within a [ListGroup]
 /// to render individual items within a list.
 ///
 /// See: <http://v4-alpha.getbootstrap.com/components/list-group/>
 @Factory()
-// ignore: undefined_identifier
 UiFactory<ListGroupItemProps> ListGroupItem = _$ListGroupItem;
 
 @Props()

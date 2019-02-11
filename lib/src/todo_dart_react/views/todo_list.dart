@@ -1,4 +1,4 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 typedef AddTodoCallback(Todo todo);
 typedef DeleteTodoCallback(Todo todo);
