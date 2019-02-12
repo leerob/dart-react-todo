@@ -1,0 +1,5 @@
+platforms:
+  - chrome
+
+paths:
+  - test/unit/generated_runner_test.dart

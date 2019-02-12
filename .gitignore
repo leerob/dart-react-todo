@@ -7,3 +7,4 @@ build/
 /coverage/
 /test/unit/generated_runner_test.html.temp.html
 .netlify
+.dart_tool

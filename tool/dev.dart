@@ -21,9 +21,8 @@ main(List<String> args) async {
     ..lineLength = 100;
 
   config.test
-    ..platforms = ['content-shell']
-    ..unitTests = ['test/unit/generated_runner_test.dart']
-    ..pubServe = true;
+    ..platforms = ['chrome']
+    ..unitTests = ['test/unit/generated_runner_test.dart'];
 
   await dev(args);
 }

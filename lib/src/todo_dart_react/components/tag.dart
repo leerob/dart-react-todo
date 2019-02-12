@@ -1,14 +1,14 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 /// Bootstrap's `Tag` component renders a small and adaptive tag
 /// for adding context to just about any content.
 ///
 /// See: <http://v4-alpha.getbootstrap.com/components/tag/>
 @Factory()
-UiFactory<TagProps> Tag;
+UiFactory<TagProps> Tag = _$Tag;
 
 @Props()
-class TagProps extends UiProps {
+class _$TagProps extends UiProps {
   /// The skin / "context" for the [Tag].
   ///
   /// See: <http://v4-alpha.getbootstrap.com/components/tag/#contextual-variations>.

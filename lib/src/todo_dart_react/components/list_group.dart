@@ -1,14 +1,14 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 /// Bootstrap's `ListGroup` component is flexible and powerful for
 /// displaying lists of [ListGroupItem] components.
 ///
 /// See: <http://v4-alpha.getbootstrap.com/components/list-group/>
 @Factory()
-UiFactory<ListGroupProps> ListGroup;
+UiFactory<ListGroupProps> ListGroup = _$ListGroup;
 
 @Props()
-class ListGroupProps extends UiProps {
+class _$ListGroupProps extends UiProps {
   /// The HTML element type for the [ListGroup], specifying its
   /// DOM representation when rendered.
   ///

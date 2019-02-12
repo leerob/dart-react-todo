@@ -1,10 +1,10 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 @Factory()
-UiFactory<TodoInputProps> TodoInput;
+UiFactory<TodoInputProps> TodoInput = _$TodoInput;
 
 @Props()
-class TodoInputProps extends UiProps {
+class _$TodoInputProps extends UiProps {
   /// When a new todo item is added to the list.
   AddTodoCallback addTodo;
 }

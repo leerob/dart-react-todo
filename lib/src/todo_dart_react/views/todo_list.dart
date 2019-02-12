@@ -1,13 +1,13 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 typedef AddTodoCallback(Todo todo);
 typedef DeleteTodoCallback(Todo todo);
 
 @Factory()
-UiFactory<TodoListProps> TodoList;
+UiFactory<TodoListProps> TodoList = _$TodoList;
 
 @Props()
-class TodoListProps extends UiProps {
+class _$TodoListProps extends UiProps {
   List<Todo> todos;
   AddTodoCallback addTodo;
   DeleteTodoCallback deleteTodo;

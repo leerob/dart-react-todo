@@ -1,14 +1,14 @@
-part of todo_dart_react;
+part of '../components.dart';
 
 /// Nest one or more `Button` components within a [ListGroup]
 /// to render individual items within a list.
 ///
 /// See: <http://v4-alpha.getbootstrap.com/components/list-group/>
 @Factory()
-UiFactory<ButtonProps> Button;
+UiFactory<ButtonProps> Button = _$Button;
 
 @Props()
-class ButtonProps extends UiProps {
+class _$ButtonProps extends UiProps {
   /// The skin / "context" for the [Button].
   ///
   /// See: <http://v4-alpha.getbootstrap.com/components/buttons/#examples>.
@@ -72,7 +72,7 @@ class ButtonProps extends UiProps {
 }
 
 @State()
-class ButtonState extends UiState {}
+class _$ButtonState extends UiState {}
 
 @Component()
 class ButtonComponent<T extends ButtonProps, S extends ButtonState>
