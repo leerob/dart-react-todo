@@ -486,13 +486,7 @@ This test creates a new handler for deleting a todo and passes it to the `TodoLi
 We can now run all unit tests using the following command:
 
 ```bash
-$ ddev test
-```
-
-We can also run a specific test group using the -n flag and providing the group name.
-
-```bash
-$ ddev test -n "TodoListItem"
+$ pub run build_runner test
 ```
 
 ### Continuous Integration
