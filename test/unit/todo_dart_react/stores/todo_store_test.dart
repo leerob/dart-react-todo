@@ -13,6 +13,12 @@ main() {
       todo = Todo('Testing!');
     });
 
+    tearDown(() {
+      actions = null;
+      store = null;
+      todo = null;
+    });
+
     test('add, complete, and delete', () async {
       await actions.addTodo(todo);
       expect(store.todos, contains(todo));

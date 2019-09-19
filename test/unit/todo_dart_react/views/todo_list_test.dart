@@ -5,7 +5,7 @@ import 'package:todo_dart_react/src/todo_dart_react/components.dart';
 
 main() {
   List<Todo> todos;
-  var renderedInstance;
+  TestJacket<TodoListComponent> jacket;
 
   group('TodoList', () {
     setUp(() {
@@ -17,18 +17,22 @@ main() {
       ];
     });
 
+    tearDown(() {
+      todos = null;
+    });
+
     test('renders correctly', () {
-      handler(AddTodoCallback) => null;
+      handler(_) => null;
 
-      renderedInstance = render(TodoList()
+      jacket = mount((TodoList()
         ..addTodo = handler
-        ..todos = todos);
+        ..todos = todos)());
 
-      var listGroup = getComponentRootDomByTestId(renderedInstance, 'todoListGroup');
-      expect(listGroup.children.length, 4);
+      final listGroupNode = queryByTestId(jacket.getInstance(), 'todoListGroup');
+      expect(listGroupNode.children.length, 4);
 
-      final todoInput = getComponentByTestId(renderedInstance, 'todoInputComponent') as TodoInputComponent;
-      expect(todoInput.props.addTodo, isNotNull);
+      final todoInputProps = getPropsByTestId(jacket.getInstance(), 'todoInputComponent') as TodoInputProps;
+      expect(todoInputProps.addTodo, isNotNull);
     });
   });
 }

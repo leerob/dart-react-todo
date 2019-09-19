@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:over_react_test/over_react_test.dart';
 import 'package:test/test.dart';
 
@@ -10,14 +8,14 @@ main() {
     test('calls deleteTodo when button is clicked', () {
       bool called = false;
       Todo todo = Todo('Testing!');
-      handler(DeleteTodoCallback) => called = true;
+      handler(_) => called = true;
 
-      var renderedInstance = render(TodoListItem()
+      TestJacket<TodoListItemComponent> jacket = mount((TodoListItem()
         ..deleteTodo = handler
-        ..todo = todo);
+        ..todo = todo)());
 
-      Element deleteButton = getComponentRootDomByTestId(renderedInstance, 'deleteTodo');
-      click(deleteButton);
+      final deleteButtonNode = queryByTestId(jacket.getInstance(), 'deleteTodo');
+      click(deleteButtonNode);
       expect(called, isTrue);
     });
   });
