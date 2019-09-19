@@ -195,19 +195,6 @@ which turns the previous command into:
 $ ddev format
 ```
 
-#### Recommended Formatting Package
-
-In the previous section, we used `dart_dev` to format the code in the entire project - and for most Dart projects, the 
-[default dart formatter](https://github.com/dart-lang/dart_style) works great. Unfortunately, in many cases it 
-[does not play nice](https://github.com/workiva/over_react#component-formatting) with 
-over_react's ["fluent" component interface](https://github.com/workiva/over_react#fluent-style-component-consumption).
-
-Luckily, the authors of `over_react` also wrote a formatting "addon" called `over_react_format` to ensure that 
-UI component code remains readable. 
-Once you [__install and configure `over_react_format`__](https://github.com/workiva/over_react_format#using-it), 
-running `pub run dart_dev format` as described in the previous section will continue to work - but it will utilize 
-the `over_react_format` addon to ensure that UI components are formatted well.
-
 ### Building the Application
 
 Now that we have an understanding of the language/tools we're working with, let's start creating the application! We will be utilizing some of Workiva's OSS.
