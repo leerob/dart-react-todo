@@ -31,28 +31,28 @@ There are a million different ways to build a web app in today's landscape. Diff
 
 ### Quickstart
 
-If you already have Dart installed and configured for Dart 2.0, you can use the quick start.
+If you [already have Dart installed and configured](#installing-dart) for Dart 2.0, you can use the quick start.
 
 ```bash
 $ git clone https://github.com/leerob/dart-react-todo.git
 $ cd dart-react-todo
 $ pub get
-$ pub run build_runner serve
+$ webdev serve
 ```
 
-Open up http://localhost:8080/ to see the application.
+Open up http://localhost:8080/ to see the application running in the browser.
 
 ### What is Dart?
 
-Dart is a programming language originally [developed by Google](https://www.dartlang.org/) for building complex web applications. It's a statically-typed alternative to JavaScript that compiles to JS for use in the browser. It's open-source, easy to learn, and easy to scale. But wait, there's more!
+Dart is a programming language originally [developed by Google](https://dart.dev/) for building complex web applications. It's a [statically-typed](https://dart.dev/guides/language/sound-dart) alternative to JavaScript that compiles to JS for use in the browser. It's open-source, easy to learn, and easy to scale. But wait, there's more!
 
 - Strong IDE integration (code completion, code navigation, static analysis, etc.)
 - Strong core set of common libraries (async, collections, isolates, etc.)
 - Excellent development ecosystem
 - Multi-threading support
-- And [much, much more](https://www.dartlang.org/guides/language)
+- And [much, much more](https://dart.dev/guides/language/language-tour)
 
-Google uses Dart for [AdWords](https://news.dartlang.org/2016/03/the-new-adwords-ui-uses-dart-we-asked.html) which makes up the majority of Google's revenue. It's also the language used at [Workiva](https://www.workiva.com/) for their next-generation products. Workiva has committed to using Dart and has published a [variety of OSS (open-source software) libraries](https://workiva.github.io/) to make developer's lives easier. If you're curious, here's a list of some companies [who use Dart.](https://www.dartlang.org/community/who-uses-dart)
+Google uses Dart for [AdWords](https://news.dartlang.org/2016/03/the-new-adwords-ui-uses-dart-we-asked.html) which makes up the majority of Google's revenue. It's also the language used at [Workiva](https://www.workiva.com/) for their next-generation products. Workiva has committed to using Dart and has published a [variety of OSS (open-source software) libraries](https://workiva.github.io/) to make developer's lives easier. If you're curious, here's a list of some companies [who use Dart](https://www.dartlang.org/community/who-uses-dart).
 
 ### Why React?
 
@@ -82,26 +82,43 @@ $ git clone https://github.com/leerob/dart-react-todo.git
 $ cd dart-react-todo
 ```
 
-You can install Dart on macOS using Homebrew.
+### Installing Dart
+
+You can install Dart on macOS using [Homebrew](https://brew.sh/).
 
 ```bash
 $ brew tap dart-lang/dart
 $ brew install dart
 ```
 
+Serving Dart applications in a Web browser is done using the `webdev` command. This should be activated globally - instead of on a project-by-project basis:
+
+```bash
+$ pub global activate webdev
+```
+
 ### Building & Running
 
-The Dart SDK comes with a tool called `pub` to help manage your codebase. The most common command `pub get` is used to download a package's dependencies. This is the first thing you will need to do when checking out an
+The Dart SDK comes with a [tool called `pub`](https://dart.dev/tools/pub/cmd) to help manage your codebase. The most common command `pub get` is used to download a package's dependencies. This is the first thing you will need to do when checking out an
 existing Dart repository.
 
-`pub run build_runner serve` starts up a development server for your Dart application, fully complete with hot reloading thanks to Dart 2.0. To retrieve all of the dependencies for the todo application and start a server, we can run:
+In addition to getting dependencies, you simply need to serve the application to view it in a browser:
 
 ```bash
 $ pub get
-$ pub run build_runner serve
+$ webdev serve
 ```
 
 Now, we can open up http://localhost:8080/ to see the todo application.
+
+#### Building vs. Serving
+
+Some Dart libraries _(like over_react)_ - use builders to generate files "under the hood". When you first
+open a project that contains over_react components in an IDE like Webstorm - you may see a bunch of 
+analysis errors in the "Dart Analysis" tab - even after you run `pub get`. This happens because there are
+references to objects that have not been built yet. In order to get rid of the analysis errors in your IDE, 
+run `pub run build_runner build` from the root of the project, then restart the analysis server. _Note that
+serving the app via `webdev serve` will also perform the same build._
 
 ### Dart Development Environment
 
@@ -141,14 +158,13 @@ your_app/
 - **`pubspec.lock`**
   - This file specifies the version of each dependency installed in the project.
     It will be automatically updated when dependencies change in
-    `pubspec.yaml` or by running `pub upgrade`.
+    `pubspec.yaml` or by running `pub upgrade`. __[It should only be committed in application packages](https://dart.dev/guides/libraries/private-files)__
 
 #### [dart_dev](https://github.com/Workiva/dart_dev)
 
-dart_dev is a centralized tooling package built on top of the Dart SDK. All Dart projects eventually share a common set of development requirements:
+`dart_dev` is a centralized tooling package built on top of the Dart SDK. All Dart projects eventually share a common set of development requirements:
 
 - Tests (unit, integration, and functional)
-- Code coverage
 - Consistent code formatting
 - Static analysis to detect issues
 - Documentation generation
@@ -161,6 +177,12 @@ For example: let's format the entire code base.
 $ pub run dart_dev format
 ```
 
+> __Recommended Formatting Package__
+>
+> For 
+>
+> 
+
 To make things even more simple, we can set up a bash alias
 
 ```bash
@@ -172,6 +194,19 @@ which turns the previous command into:
 ```bash
 $ ddev format
 ```
+
+#### Recommended Formatting Package
+
+In the previous section, we used `dart_dev` to format the code in the entire project - and for most Dart projects, the 
+[default dart formatter](https://github.com/dart-lang/dart_style) works great. Unfortunately, in many cases it 
+[does not play nice](https://github.com/workiva/over_react#component-formatting) with 
+over_react's ["fluent" component interface](https://github.com/workiva/over_react#fluent-style-component-consumption).
+
+Luckily, the authors of `over_react` also wrote a formatting "addon" called `over_react_format` to ensure that 
+UI component code remains readable. 
+Once you [__install and configure `over_react_format`__](https://github.com/workiva/over_react_format#using-it), 
+running `pub run dart_dev format` as described in the previous section will continue to work - but it will utilize 
+the `over_react_format` addon to ensure that UI components are formatted well.
 
 ### Building the Application
 
@@ -250,27 +285,27 @@ dev_dependencies:
   test: ^1.6.10
 ```
 
-This file tells `pub` which versions of the included packages it needs to retrieve. You can find more information about what all can be included in this file [here](https://www.dartlang.org/tools/pub/pubspec).
+This file tells `pub` which versions of the included packages it needs to retrieve. You can find more information about what all can be included in this file [here](https://dart.dev/tools/pub/pubspec).
 
 #### /web/
 
-Inside the web directory, we'll find the entry point into our application. This file sets up the `Actions` and `Store` for our Flux architecture. Then, it creates a new `TodoApp` component and renders it into our container.
+Inside the `web` directory, we'll find the entry point into our application. This file sets up the `Actions` and `Store` for our Flux architecture. Then, it creates a new `TodoApp` component and renders it into our container.
 
 **main.dart**
 
 ```dart
 import 'dart:html';
 
-import 'package:react/react_dom.dart' as react_dom;
-import 'package:react/react_client.dart' as react_client;
+import 'package:over_react/over_react.dart';
+import 'package:over_react/react_dom.dart' as react_dom;
 
 import 'package:todo_dart_react/todo_dart_react.dart';
 
 void main() {
-  react_client.setClientConfiguration();
+  setClientConfiguration();
 
-  TodoActions actions = new TodoActions();
-  TodoStore store = new TodoStore(actions);
+  TodoActions actions = TodoActions();
+  TodoStore store = TodoStore(actions);
 
   var todoApp = (TodoApp()
     ..actions = actions
@@ -281,7 +316,7 @@ void main() {
 }
 ```
 
-The container previously mentioned is the `app-container` DOM node shown below. You'll notice I've included [Bootstrap](https://getbootstrap.com/) to handle the styling our of UI components.
+The container previously mentioned is the DOM node with an `id` attribute value of `app-container` as shown below. You'll notice I've included [Bootstrap](https://getbootstrap.com/) to handle the styling our of UI components.
 
 **index.html**
 
@@ -300,14 +335,14 @@ The container previously mentioned is the `app-container` DOM node shown below. 
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"
     />
   </head>
   <body>
     <div id="app-container" class="container"></div>
 
-    <script src="./packages/react/react.js"></script>
-    <script src="./packages/react/react_dom.js"></script>
+    <script src="/packages/react/react.js"></script>
+    <script src="/packages/react/react_dom.js"></script>
     <script defer src="main.dart.js"></script>
   </body>
 </html>
@@ -454,26 +489,33 @@ render() {
 }
 ```
 
-The `ListGroupItem` component is taken from the [OverReact examples](https://workiva.github.io/over_react/demos/). It models the [list group component](https://v4-alpha.getbootstrap.com/components/list-group/) from Bootstrap. You can find more OverReact example components located in `lib/src/components`. You'll notice we've added a test ID to the `Button` component using `..addTestId()`. Let's talk about how we can unit test this component.
+The `ListGroupItem` component is taken from the [OverReact examples](https://github.com/Workiva/over_react/blob/master/web/src/demo_components/list_group_item.dart). It models the [list group component](https://getbootstrap.com/docs/4.3/components/list-group/) from Bootstrap. You can find more OverReact example components located in [`lib/src/todo_dart_react/components`](https://github.com/leerob/dart-react-todo/tree/master/lib/src/todo_dart_react/components). 
+
+You'll notice we've added a test ID to the `Button` component using `..addTestId()`. Let's talk about how we can unit test this component.
 
 ### Testing
 
-All of the test files are located in the `test/` directory. For this example, I've only created unit tests. You could also create integration and functional tests here as well. Testing OverReact components is simple using [over_react_test](https://github.com/Workiva/over_react_test) along with the [React test utilities](https://github.com/cleandart/react-dart#testing-using-react-test-utilities). Let's look at how we can test our `TodoListItem` component to check it properly calls `deleteTodo` when the button is clicked.
+All of the test files are located in the `test/` directory. For this example, I've only created unit tests. You could also create integration and functional tests here as well. Testing OverReact components is simple using [over_react_test](https://github.com/Workiva/over_react_test). Let's look at how we can test our `TodoListItem` component to check it properly calls `deleteTodo` when the button is clicked.
 
 **todo_list_item_test.dart**
 
 ```dart
 test('calls deleteTodo when button is clicked', () {
   bool called = false;
-  Todo todo = new Todo('Testing!');
-  handler(DeleteTodoCallback) => called = true;
+  Todo todo = Todo('Testing!');
+  void handler(_) {
+    called = true;
+  }
 
-  var renderedInstance = render(TodoListItem()
+  // A TestJacket is returned from `mount`. 
+  // The jacket instance exposes everything you might need to 
+  // access things like the component's props, the DOM node it renders, the component instance itself, etc.
+  TestJacket<TodoListItemComponent> jacket = mount(TodoListItem()
     ..deleteTodo = handler
     ..todo = todo);
 
-  Element deleteButton = getComponentRootDomByTestId(renderedInstance, 'deleteTodo');
-  click(deleteButton);
+  final deleteButtonNode = queryByTestId(jacket.getInstance(), 'deleteTodo');
+  click(deleteButtonNode);
   expect(called, isTrue);
 });
 ```
@@ -494,13 +536,14 @@ Continuous Integration (CI) is the process of automating the building and testin
 
 ### Deploying
 
-When you're ready to compile your code to JS, we can use `pub run build_runner build`. [This command](https://webdev.dartlang.org/tools/webdev#webdev-build) uses
-`dart2js` to compile Dart to a single JS bundle. `dart2js` will automatically
-remove any dead code or unused libraries. By default, the
-compiled code is output to the `build/` directory.
+When you're ready to compile your code to JS, we can use `pub run build_runner build -r`. 
+The `-r` flag stands for "release" - and uses `dart2js` to compile Dart into a single JS bundle. 
+
+`dart2js` will automatically remove any dead code or unused libraries. By default, the
+compiled code is output to `.dart_tool/build/generated/todo_dart_react/web/main.dart.js`.
 
 ```bash
-$ pub run build_runner build
+$ pub run build_runner build -r
 ```
 
 #### Netlify
@@ -540,9 +583,9 @@ The todo list isn't fully completed per our requirements. To fully finish the ap
 
 - [Getting the most out of React in Dart](https://www.youtube.com/watch?v=ekBD-_jRjds)
 - [Intro to Dart for Java Developers](https://codelabs.developers.google.com/codelabs/from-java-to-dart/index.html#0)
-- [Language Tour](https://www.dartlang.org/guides/language/language-tour)
-- [Library Tour](https://www.dartlang.org/guides/libraries/library-tour)
-- [Effective Dart](https://www.dartlang.org/guides/language/effective-dart)
-- [Futures Tutorial](https://www.dartlang.org/tutorials/language/futures)
-- [Streams Tutorial](https://www.dartlang.org/tutorials/language/streams)
+- [Language Tour](https://dart.dev/guides/language/language-tour)
+- [Library Tour](https://dart.dev/guides/libraries/library-tour)
+- [Effective Dart](https://dart.dev/guides/language/effective-dart)
+- [Futures Tutorial](https://dart.dev/codelabs/async-await)
+- [Streams Tutorial](https://dart.dev/tutorials/language/streams)
 - [Dart by Example](http://jpryan.me/dartbyexample/)
