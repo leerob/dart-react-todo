@@ -80,7 +80,7 @@ class ToggleButtonGroupComponent
   }
 
   /// The handler for when one of the children of the [ToggleButtonGroup] is changed or unchecked
-  void _handleOnChange(react.SyntheticFormEvent event) {
+  void _handleOnChange(SyntheticFormEvent event) {
     _toggleButtonRefs.values.forEach((childComponent) {
       if (childComponent is ToggleButtonComponent) childComponent._refreshState();
     });

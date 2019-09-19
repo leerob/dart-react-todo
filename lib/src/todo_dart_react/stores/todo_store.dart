@@ -3,10 +3,10 @@ part of '../components.dart';
 class TodoStore extends Store {
   TodoStore(TodoActions actions) : _actions = actions {
     _todos = [
-      new Todo('Learn Dart'),
-      new Todo('Learn React'),
-      new Todo('????'),
-      new Todo('Profit!')
+      Todo('Learn Dart'),
+      Todo('Learn React'),
+      Todo('????'),
+      Todo('Profit!')
     ];
 
     triggerOnActionV2<Todo>(_actions.addTodo, (todo) => _todos.add(todo));

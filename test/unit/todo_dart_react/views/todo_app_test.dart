@@ -9,8 +9,8 @@ main() {
 
   group('TodoApp', () {
     setUp(() {
-      actions = new TodoActions();
-      store = new TodoStore(actions);
+      actions = TodoActions();
+      store = TodoStore(actions);
     });
 
     test('renders correctly', () {

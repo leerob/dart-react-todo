@@ -9,13 +9,13 @@ main() {
   group('TodoListItem', () {
     test('calls deleteTodo when button is clicked', () {
       bool called = false;
-      Todo todo = new Todo('Testing!');
+      Todo todo = Todo('Testing!');
       handler(DeleteTodoCallback) => called = true;
 
       var renderedInstance = render(TodoListItem()
         ..deleteTodo = handler
         ..todo = todo);
-          
+
       Element deleteButton = getComponentRootDomByTestId(renderedInstance, 'deleteTodo');
       click(deleteButton);
       expect(called, isTrue);

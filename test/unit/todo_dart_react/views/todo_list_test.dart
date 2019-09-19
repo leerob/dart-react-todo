@@ -10,10 +10,10 @@ main() {
   group('TodoList', () {
     setUp(() {
       todos = [
-        new Todo('Learn Dart'),
-        new Todo('Learn React'),
-        new Todo('????'),
-        new Todo('Profit!')
+        Todo('Learn Dart'),
+        Todo('Learn React'),
+        Todo('????'),
+        Todo('Profit!')
       ];
     });
 
