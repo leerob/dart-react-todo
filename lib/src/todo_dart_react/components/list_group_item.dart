@@ -208,26 +208,20 @@ class ListGroupItemHeaderElementSize {
   ListGroupItemHeaderElementSize._internal(this.componentBuilderFactory);
 
   /// A [Dom.h1] (HTML `<h1>` element)
-  static final ListGroupItemHeaderElementSize H1 =
-      ListGroupItemHeaderElementSize._internal(Dom.h1);
+  static final ListGroupItemHeaderElementSize H1 = ListGroupItemHeaderElementSize._internal(Dom.h1);
 
   /// A [Dom.h2] (HTML `<h2>` element)
-  static final ListGroupItemHeaderElementSize H2 =
-      ListGroupItemHeaderElementSize._internal(Dom.h2);
+  static final ListGroupItemHeaderElementSize H2 = ListGroupItemHeaderElementSize._internal(Dom.h2);
 
   /// A [Dom.h3] (HTML `<h3>` element)
-  static final ListGroupItemHeaderElementSize H3 =
-      ListGroupItemHeaderElementSize._internal(Dom.h3);
+  static final ListGroupItemHeaderElementSize H3 = ListGroupItemHeaderElementSize._internal(Dom.h3);
 
   /// A [Dom.h4] (HTML `<h4>` element)
-  static final ListGroupItemHeaderElementSize H4 =
-      ListGroupItemHeaderElementSize._internal(Dom.h4);
+  static final ListGroupItemHeaderElementSize H4 = ListGroupItemHeaderElementSize._internal(Dom.h4);
 
   /// A [Dom.h5] (HTML `<h5>` element)
-  static final ListGroupItemHeaderElementSize H5 =
-      ListGroupItemHeaderElementSize._internal(Dom.h5);
+  static final ListGroupItemHeaderElementSize H5 = ListGroupItemHeaderElementSize._internal(Dom.h5);
 
   /// A [Dom.h6] (HTML `<h6>` element)
-  static final ListGroupItemHeaderElementSize H6 =
-      ListGroupItemHeaderElementSize._internal(Dom.h6);
+  static final ListGroupItemHeaderElementSize H6 = ListGroupItemHeaderElementSize._internal(Dom.h6);
 }

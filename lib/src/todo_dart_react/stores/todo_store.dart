@@ -2,12 +2,7 @@ part of '../components.dart';
 
 class TodoStore extends Store {
   TodoStore(TodoActions actions) : _actions = actions {
-    _todos = [
-      Todo('Learn Dart'),
-      Todo('Learn React'),
-      Todo('????'),
-      Todo('Profit!')
-    ];
+    _todos = [Todo('Learn Dart'), Todo('Learn React'), Todo('????'), Todo('Profit!')];
 
     triggerOnActionV2<Todo>(_actions.addTodo, (todo) => _todos.add(todo));
     triggerOnActionV2<Todo>(_actions.completeTodo, (todo) => todo.completed = true);
