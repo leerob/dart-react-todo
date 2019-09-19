@@ -32,7 +32,7 @@ class TodoInputComponent extends UiComponent<TodoInputProps> {
       ..placeholder = 'What do you need to do?'
       ..onKeyDown = _checkForEnterPressed
       ..ref = (instance) {
-        _todoInput = instance;
+        _todoInput = instance as InputElement;
       })();
   }
 }

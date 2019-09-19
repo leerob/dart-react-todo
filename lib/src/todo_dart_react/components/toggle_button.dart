@@ -122,7 +122,7 @@ class ToggleButtonComponent extends ButtonComponent<ToggleButtonProps, ToggleBut
       ..onClick = props.onClick
       ..style = makeInputNodeInvisible
       ..ref = (ref) {
-        inputRef = ref;
+        inputRef = ref as InputElement;
       }
       ..key = 'input';
 

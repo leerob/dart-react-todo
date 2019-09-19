@@ -9,10 +9,10 @@ class TodoStore extends Store {
       new Todo('Profit!')
     ];
 
-    triggerOnActionV2(_actions.addTodo, (todo) => _todos.add(todo));
-    triggerOnActionV2(_actions.completeTodo, (todo) => todo.completed = true);
-    triggerOnActionV2(_actions.deleteTodo, (todo) => _todos.remove(todo));
-    triggerOnActionV2(_actions.clearTodoList, (_) => _todos = []);
+    triggerOnActionV2<Todo>(_actions.addTodo, (todo) => _todos.add(todo));
+    triggerOnActionV2<Todo>(_actions.completeTodo, (todo) => todo.completed = true);
+    triggerOnActionV2<Todo>(_actions.deleteTodo, (todo) => _todos.remove(todo));
+    triggerOnActionV2<Null>(_actions.clearTodoList, (_) => _todos = []);
   }
 
   final TodoActions _actions;
