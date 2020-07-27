@@ -19,7 +19,7 @@ class TodoInputComponent extends UiComponent<TodoInputProps> {
   /// value and reset the input.
   void _checkForEnterPressed(e) {
     if (e.keyCode == 13) {
-      props.addTodo(new Todo(_todoInput.value));
+      props.addTodo(Todo(_todoInput.value));
       _todoInput.value = '';
     }
   }
@@ -32,7 +32,7 @@ class TodoInputComponent extends UiComponent<TodoInputProps> {
       ..placeholder = 'What do you need to do?'
       ..onKeyDown = _checkForEnterPressed
       ..ref = (instance) {
-        _todoInput = instance;
+        _todoInput = instance as InputElement;
       })();
   }
 }

@@ -5,30 +5,34 @@ import 'package:todo_dart_react/src/todo_dart_react/components.dart';
 
 main() {
   List<Todo> todos;
-  var renderedInstance;
+  TestJacket<TodoListComponent> jacket;
 
   group('TodoList', () {
     setUp(() {
       todos = [
-        new Todo('Learn Dart'),
-        new Todo('Learn React'),
-        new Todo('????'),
-        new Todo('Profit!')
+        Todo('Learn Dart'),
+        Todo('Learn React'),
+        Todo('????'),
+        Todo('Profit!')
       ];
     });
 
+    tearDown(() {
+      todos = null;
+    });
+
     test('renders correctly', () {
-      handler(AddTodoCallback) => null;
+      handler(_) => null;
 
-      renderedInstance = render(TodoList()
+      jacket = mount((TodoList()
         ..addTodo = handler
-        ..todos = todos);
+        ..todos = todos)());
 
-      var listGroup = getComponentRootDomByTestId(renderedInstance, 'todoListGroup');
-      expect(listGroup.children.length, 4);
+      final listGroupNode = queryByTestId(jacket.getInstance(), 'todoListGroup');
+      expect(listGroupNode.children.length, 4);
 
-      TodoInputComponent todoInput = getComponentByTestId(renderedInstance, 'todoInputComponent');
-      expect(todoInput.props.addTodo, isNotNull);
+      final todoInputProps = getPropsByTestId(jacket.getInstance(), 'todoInputComponent') as TodoInputProps;
+      expect(todoInputProps.addTodo, isNotNull);
     });
   });
 }

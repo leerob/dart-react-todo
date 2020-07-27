@@ -8,9 +8,15 @@ main() {
     Todo todo;
 
     setUp(() {
-      actions = new TodoActions();
-      store = new TodoStore(actions);
-      todo = new Todo('Testing!');
+      actions = TodoActions();
+      store = TodoStore(actions);
+      todo = Todo('Testing!');
+    });
+
+    tearDown(() {
+      actions = null;
+      store = null;
+      todo = null;
     });
 
     test('add, complete, and delete', () async {

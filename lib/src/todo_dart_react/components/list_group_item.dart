@@ -119,7 +119,7 @@ class ListGroupItemComponent extends UiComponent<ListGroupItemProps> {
   ReactElement renderItemHeader() {
     if (props.header == null) return null;
 
-    var headerClasses = new ClassNameBuilder.fromProps(props.headerProps)
+    var headerClasses = ClassNameBuilder.fromProps(props.headerProps)
       ..add('list-group-item-heading');
 
     return (props.headerSize.componentBuilderFactory()
@@ -193,13 +193,13 @@ class ListGroupItemElementType {
   ///
   /// Only use this when the parent [ListGroup] has
   /// [ListGroupProps.elementType] set to [ListGroupElementType.UL].
-  static final ListGroupItemElementType LI = new ListGroupItemElementType._internal(Dom.li);
+  static final ListGroupItemElementType LI = ListGroupItemElementType._internal(Dom.li);
 
   /// A [Dom.span] (HTML `<span>` element)
   ///
   /// Will only be used if [ListGroupItemProps.href] and
   /// [ListGroupItemProps.onClick] are both `null`.
-  static final ListGroupItemElementType SPAN = new ListGroupItemElementType._internal(Dom.span);
+  static final ListGroupItemElementType SPAN = ListGroupItemElementType._internal(Dom.span);
 }
 
 /// Options for the [Element] that will be used when rendering a [ListGroupItemProps.header].
@@ -208,26 +208,20 @@ class ListGroupItemHeaderElementSize {
   ListGroupItemHeaderElementSize._internal(this.componentBuilderFactory);
 
   /// A [Dom.h1] (HTML `<h1>` element)
-  static final ListGroupItemHeaderElementSize H1 =
-      new ListGroupItemHeaderElementSize._internal(Dom.h1);
+  static final ListGroupItemHeaderElementSize H1 = ListGroupItemHeaderElementSize._internal(Dom.h1);
 
   /// A [Dom.h2] (HTML `<h2>` element)
-  static final ListGroupItemHeaderElementSize H2 =
-      new ListGroupItemHeaderElementSize._internal(Dom.h2);
+  static final ListGroupItemHeaderElementSize H2 = ListGroupItemHeaderElementSize._internal(Dom.h2);
 
   /// A [Dom.h3] (HTML `<h3>` element)
-  static final ListGroupItemHeaderElementSize H3 =
-      new ListGroupItemHeaderElementSize._internal(Dom.h3);
+  static final ListGroupItemHeaderElementSize H3 = ListGroupItemHeaderElementSize._internal(Dom.h3);
 
   /// A [Dom.h4] (HTML `<h4>` element)
-  static final ListGroupItemHeaderElementSize H4 =
-      new ListGroupItemHeaderElementSize._internal(Dom.h4);
+  static final ListGroupItemHeaderElementSize H4 = ListGroupItemHeaderElementSize._internal(Dom.h4);
 
   /// A [Dom.h5] (HTML `<h5>` element)
-  static final ListGroupItemHeaderElementSize H5 =
-      new ListGroupItemHeaderElementSize._internal(Dom.h5);
+  static final ListGroupItemHeaderElementSize H5 = ListGroupItemHeaderElementSize._internal(Dom.h5);
 
   /// A [Dom.h6] (HTML `<h6>` element)
-  static final ListGroupItemHeaderElementSize H6 =
-      new ListGroupItemHeaderElementSize._internal(Dom.h6);
+  static final ListGroupItemHeaderElementSize H6 = ListGroupItemHeaderElementSize._internal(Dom.h6);
 }

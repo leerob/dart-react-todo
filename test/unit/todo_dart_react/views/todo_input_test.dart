@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:over_react_test/over_react_test.dart';
 import 'package:test/test.dart';
 
@@ -9,12 +7,12 @@ main() {
   group('TodoInput', () {
     test('calls addTodo when enter is pressed', () {
       bool called = false;
-      handler(AddTodoCallback) => called = true;
+      handler(_) => called = true;
 
-      var renderedInstance = render(TodoInput()..addTodo = handler);
-      Element todoInput = getComponentRootDomByTestId(renderedInstance, 'todoInput');
-  
-      keyDown(todoInput, {'key': 'Enter', 'keyCode': 13});
+      TestJacket<TodoInputComponent> jacket = mount((TodoInput()..addTodo = handler)());
+      final todoInputNode = queryByTestId(jacket.getInstance(), 'todoInput');
+
+      keyDown(todoInputNode, {'key': 'Enter', 'keyCode': 13});
       expect(called, isTrue);
     });
   });

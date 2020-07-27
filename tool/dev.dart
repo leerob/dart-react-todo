@@ -8,14 +8,6 @@ main(List<String> args) async {
   var directories = ['lib/', 'tool/', 'web/'];
   config.analyze.entryPoints = directories;
 
-  config.coverage
-    ..pubServe = true
-    ..reportOn = [
-      'lib/src/todo_dart_react/model/',
-      'lib/src/todo_dart_react/stores/',
-      'lib/src/todo_dart_react/views/'
-    ];
-
   config.format
     ..paths = directories
     ..lineLength = 100;

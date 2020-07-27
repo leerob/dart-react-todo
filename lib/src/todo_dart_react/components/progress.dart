@@ -112,7 +112,7 @@ class ProgressComponent extends UiStatefulComponent<ProgressProps, ProgressState
   }
 
   ReactElement renderCaptionNode() {
-    var captionClasses = new ClassNameBuilder.fromProps(props.captionProps)
+    var captionClasses = ClassNameBuilder.fromProps(props.captionProps)
       ..add('sr-only', !props.showCaption);
 
     var captionText = props.caption ?? '';
@@ -128,7 +128,7 @@ class ProgressComponent extends UiStatefulComponent<ProgressProps, ProgressState
   }
 
   ClassNameBuilder _getProgressNodeClasses() {
-    return new ClassNameBuilder()
+    return ClassNameBuilder()
       ..add('progress')
       ..add('progress-striped', props.isStriped)
       ..add('progress-animated', props.isAnimated)

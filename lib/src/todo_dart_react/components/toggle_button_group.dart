@@ -58,7 +58,7 @@ class ToggleButtonGroupComponent
   /// The props that should be added when we clone the given [child] using
   /// [cloneElement] via [renderButton].
   @override
-  ToggleButtonProps buttonPropsToAdd(dynamic child, int index) {
+  ToggleButtonProps buttonPropsToAdd(ReactElement child, int index) {
     var childProps = childFactory(getProps(child));
 
     ButtonProps superPropsToAdd = super.buttonPropsToAdd(child, index);
@@ -80,7 +80,7 @@ class ToggleButtonGroupComponent
   }
 
   /// The handler for when one of the children of the [ToggleButtonGroup] is changed or unchecked
-  void _handleOnChange(react.SyntheticFormEvent event) {
+  void _handleOnChange(SyntheticFormEvent event) {
     _toggleButtonRefs.values.forEach((childComponent) {
       if (childComponent is ToggleButtonComponent) childComponent._refreshState();
     });
